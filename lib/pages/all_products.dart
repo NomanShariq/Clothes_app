@@ -22,7 +22,7 @@ class Allproducts extends StatelessWidget {
             size: 30,
             color: Colors.black,
           ),
-          title: Image.asset(
+          title: Image.network(
             "logo.png",
             height: 100,
             width: 250,

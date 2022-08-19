@@ -9,7 +9,7 @@ class CategoryPage extends StatelessWidget {
     List<Map> categories = [
       {'id': '1', 'name': 'Women', 'image': 'assets/banner1.png'},
       {'id': '2', 'name': 'Men', 'image': 'assets/banner2.png'},
-      {'id': '3', 'name': 'Kids', 'image': 'assets/banner3.png'},
+      {'id': '3', 'name': 'Kids', 'image': 'assets/kids.jpg'},
     ];
     return Scaffold(
         appBar: AppBar(

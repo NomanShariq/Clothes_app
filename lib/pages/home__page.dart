@@ -60,47 +60,47 @@ class Homepage extends StatelessWidget {
               })
         ],
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            ListTile(
-              title: const Text('Item 1'),
-              onTap: () {},
-            ),
-            ListTile(
-              title: const Text('Item 2'),
-              leading: const Icon(Icons.flight_land),
-              onTap: () {},
-            ),
-            ListTile(
-              title: const Text('Item 2'),
-              leading: const Icon(Icons.flight_land),
-              onTap: () {},
-            ),
-            ListTile(
-              title: const Text('Item 2'),
-              leading: const Icon(Icons.flight_land),
-              onTap: () {},
-            ),
-            ListTile(
-              title: const Text('Item 2'),
-              leading: const Icon(Icons.flight_land),
-              onTap: () {},
-            ),
-            ListTile(
-              title: const Text('Item 2'),
-              leading: const Icon(Icons.flight_land),
-              onTap: () {},
-            ),
-            ListTile(
-              title: const Text('Item 2'),
-              leading: const Icon(Icons.flight_land),
-              onTap: () {},
-            ),
-          ],
-        ),
-      ),
+      // drawer: Drawer(
+      //   child: ListView(
+      //     padding: EdgeInsets.zero,
+      //     children: [
+      //       ListTile(
+      //         title: const Text('Item 1'),
+      //         onTap: () {},
+      //       ),
+      //       ListTile(
+      //         title: const Text('Item 2'),
+      //         leading: const Icon(Icons.flight_land),
+      //         onTap: () {},
+      //       ),
+      //       ListTile(
+      //         title: const Text('Item 2'),
+      //         leading: const Icon(Icons.flight_land),
+      //         onTap: () {},
+      //       ),
+      //       ListTile(
+      //         title: const Text('Item 2'),
+      //         leading: const Icon(Icons.flight_land),
+      //         onTap: () {},
+      //       ),
+      //       ListTile(
+      //         title: const Text('Item 2'),
+      //         leading: const Icon(Icons.flight_land),
+      //         onTap: () {},
+      //       ),
+      //       ListTile(
+      //         title: const Text('Item 2'),
+      //         leading: const Icon(Icons.flight_land),
+      //         onTap: () {},
+      //       ),
+      //       ListTile(
+      //         title: const Text('Item 2'),
+      //         leading: const Icon(Icons.flight_land),
+      //         onTap: () {},
+      //       ),
+      //     ],
+      //   ),
+      // ),
       body: ListView(
         children: [
         SizedBox(

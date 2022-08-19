@@ -19,7 +19,7 @@ class ScreenArguments with ChangeNotifier {
 }
 
 class Product with ChangeNotifier {
-  List<ScreenArguments> _items = [
+  final List<ScreenArguments> _items = [
     ScreenArguments(
         id: '1',
         catid: '2',
@@ -61,7 +61,7 @@ class Product with ChangeNotifier {
         desc:
             'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
         ScreenArguments(
-        id: '5',
+        id: '6',
         catid: '1',
         image: 'women1.png',
         title: 'PINK LILLY EMBROIDERED SHIRT',
@@ -69,7 +69,7 @@ class Product with ChangeNotifier {
         desc:
             'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
         ScreenArguments(
-        id: '5',
+        id: '7',
         catid: '1',
         image: 'women2.png',
         title: 'PRIMROSE-2PC (SHIRT & DUPATTA)',
@@ -77,13 +77,45 @@ class Product with ChangeNotifier {
         desc:
             'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
         ScreenArguments(
-        id: '5',
+        id: '8',
         catid: '1',
         image: 'women3.png',
         title: 'SUMMER BLOOM-2PC (SHIRT & DUPATTA)',
         price: 8950,
         desc:
-            'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.')
+            'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
+            ScreenArguments(
+        id: '9',
+        catid: '3',
+        image: 'kidsproduct.jpeg',
+        title: "SWIGGLES KID'S COMFORTABLE POLYESTER TROUSER",
+        price: 399,
+        desc:
+            'These Trousers give you the quality, durability, and comfort for all your sporting activities. The Elasticity of the fabric makes it easy to wear. This fabric is so soft and doesnt irritate the skin.'),
+            ScreenArguments(
+        id: '10',
+        catid: '3',
+        image: 'product1.jpg',
+        title: 'Men Denim Jeans',
+        price: 4999,
+        desc:
+            'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
+            ScreenArguments(
+        id: '11',
+        catid: '3',
+        image: 'product1.jpg',
+        title: 'Men Denim Jeans',
+        price: 4999,
+        desc:
+            'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
+            ScreenArguments(
+        id: '12',
+        catid: '3',
+        image: 'product1.jpg',
+        title: 'Men Denim Jeans',
+        price: 4999,
+        desc:
+            'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
   ];
   List<ScreenArguments> get items {
     return [..._items];
