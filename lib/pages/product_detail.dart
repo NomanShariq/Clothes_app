@@ -13,7 +13,7 @@ class ProductDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments?;
     final cart = Provider.of<Cart>(context);
-    
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -22,7 +22,7 @@ class ProductDetail extends StatelessWidget {
           color: Colors.black,
         ),
         title: Image.asset(
-          "logo.png",
+          "assets/images/logo.png",
           height: 100,
           width: 230,
         ).centered(),

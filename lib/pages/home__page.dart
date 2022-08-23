@@ -7,6 +7,7 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:carousel_nullsafety/carousel_nullsafety.dart';
 import '../models/cart.dart';
 import '../models/screen_arguements.dart';
+
 class Homepage extends StatelessWidget {
   const Homepage({Key? key}) : super(key: key);
 
@@ -17,418 +18,404 @@ class Homepage extends StatelessWidget {
     final prdcts = productdata.items;
 
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(
-          size: 30,
-          color: Colors.black,
-        ),
-        title: Image.asset(
-          "logo.png",
-          height: 100,
-          width: 250,
-        ).centered(),
-        actions: <Widget>[
-          Padding(
-      padding: EdgeInsets.only(right: 20.0),
-      child: GestureDetector(
-        onTap: () {},
-        child: Icon(
-          Icons.search,
-          size: 26.0,
-        ),
-      )
-    ),
-          Padding(
-      padding: EdgeInsets.only(right: 20.0),
-      child: GestureDetector(
-        onTap: () {
-          Navigator.pushNamed(context, "/");
-        },
-        child: Icon(
-          Icons.account_circle,
-          size: 26.0,
-        ),
-      )
-    ),
-          IconButton(
-              icon: Icon(Icons.shopping_cart).badge(color:Colors.grey,count: cart.items.length),
-              onPressed: () {
-                Navigator.pushNamed(context, "/cartscreen");
-              })
-        ],
-      ),
-      // drawer: Drawer(
-      //   child: ListView(
-      //     padding: EdgeInsets.zero,
-      //     children: [
-      //       ListTile(
-      //         title: const Text('Item 1'),
-      //         onTap: () {},
-      //       ),
-      //       ListTile(
-      //         title: const Text('Item 2'),
-      //         leading: const Icon(Icons.flight_land),
-      //         onTap: () {},
-      //       ),
-      //       ListTile(
-      //         title: const Text('Item 2'),
-      //         leading: const Icon(Icons.flight_land),
-      //         onTap: () {},
-      //       ),
-      //       ListTile(
-      //         title: const Text('Item 2'),
-      //         leading: const Icon(Icons.flight_land),
-      //         onTap: () {},
-      //       ),
-      //       ListTile(
-      //         title: const Text('Item 2'),
-      //         leading: const Icon(Icons.flight_land),
-      //         onTap: () {},
-      //       ),
-      //       ListTile(
-      //         title: const Text('Item 2'),
-      //         leading: const Icon(Icons.flight_land),
-      //         onTap: () {},
-      //       ),
-      //       ListTile(
-      //         title: const Text('Item 2'),
-      //         leading: const Icon(Icons.flight_land),
-      //         onTap: () {},
-      //       ),
-      //     ],
-      //   ),
-      // ),
-      body: ListView(
-        children: [
-        SizedBox(
-          height: 400.0,
-          width: double.infinity,
-          child: Carousel(
-            images: [
-              Image.asset(
-                "banner1.png",
-                fit: BoxFit.fill,
-              ),
-              Image.asset(
-                "banner2.png",
-                fit: BoxFit.cover,
-              ),
-              Image.asset(
-                "banner3.png",
-                fit: BoxFit.fill,
-              )
-            ],
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.white,
+          iconTheme: IconThemeData(
+            size: 30,
+            color: Colors.black,
           ),
-        ),
-        SizedBox(
-          height: 35.0,
-        ),
-        Container(
-          child: ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor:
-                  MaterialStateProperty.all<Color>(Colors.black),
-              minimumSize: MaterialStateProperty.all(const Size(0, 50)),
-            ),
-            child: Text("Our Categories"),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const CategoryPage()),
-              );
-            },
+          title: Image.asset(
+            "logo.png",
+            height: 100,
+            width: 250,
           ).centered(),
+          actions: <Widget>[
+            Padding(
+                padding: EdgeInsets.only(right: 20.0),
+                child: GestureDetector(
+                  onTap: () {},
+                  child: Icon(
+                    Icons.search,
+                    size: 26.0,
+                  ),
+                )),
+            Padding(
+                padding: EdgeInsets.only(right: 20.0),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, "/");
+                  },
+                  child: Icon(
+                    Icons.account_circle,
+                    size: 26.0,
+                  ),
+                )),
+            IconButton(
+                icon: Icon(Icons.shopping_cart)
+                    .badge(color: Colors.grey, count: cart.items.length),
+                onPressed: () {
+                  Navigator.pushNamed(context, "/cartscreen");
+                })
+          ],
         ),
-        SizedBox(
-          height: 35.0,
-        ),
-        Container(
-          height: 470,
-          width: 80,
-          padding: EdgeInsets.all(10),
-          child: ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+        // drawer: Drawer(
+        //   child: ListView(
+        //     padding: EdgeInsets.zero,
+        //     children: [
+        //       ListTile(
+        //         title: const Text('Item 1'),
+        //         onTap: () {},
+        //       ),
+        //       ListTile(
+        //         title: const Text('Item 2'),
+        //         leading: const Icon(Icons.flight_land),
+        //         onTap: () {},
+        //       ),
+        //       ListTile(
+        //         title: const Text('Item 2'),
+        //         leading: const Icon(Icons.flight_land),
+        //         onTap: () {},
+        //       ),
+        //       ListTile(
+        //         title: const Text('Item 2'),
+        //         leading: const Icon(Icons.flight_land),
+        //         onTap: () {},
+        //       ),
+        //       ListTile(
+        //         title: const Text('Item 2'),
+        //         leading: const Icon(Icons.flight_land),
+        //         onTap: () {},
+        //       ),
+        //       ListTile(
+        //         title: const Text('Item 2'),
+        //         leading: const Icon(Icons.flight_land),
+        //         onTap: () {},
+        //       ),
+        //       ListTile(
+        //         title: const Text('Item 2'),
+        //         leading: const Icon(Icons.flight_land),
+        //         onTap: () {},
+        //       ),
+        //     ],
+        //   ),
+        // ),
+        body: ListView(children: [
+          SizedBox(
+            height: 400.0,
+            width: double.infinity,
+            child: Carousel(
+              images: [
+                Image.asset(
+                  "assets/images/banner1.png",
+                  fit: BoxFit.fill,
+                ),
+                Image.asset(
+                  "assets/images/banner2.png",
+                  fit: BoxFit.cover,
+                ),
+                Image.asset(
+                  "assets/images/banner3.png",
+                  fit: BoxFit.fill,
+                )
+              ],
             ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const CategoryPage()),
-              );
-            },
+          ),
+          SizedBox(
+            height: 35.0,
+          ),
+          Container(
+            child: ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                minimumSize: MaterialStateProperty.all(const Size(0, 50)),
+              ),
+              child: Text("Our Categories"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const CategoryPage()),
+                );
+              },
+            ).centered(),
+          ),
+          SizedBox(
+            height: 35.0,
+          ),
+          Container(
+            height: 470,
+            width: 80,
+            padding: EdgeInsets.all(10),
+            child: ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const CategoryPage()),
+                );
+              },
+              child: Card(
+                child: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("card1.png"),
+                        fit: BoxFit.cover,
+                        alignment: Alignment.topCenter,
+                      ),
+                    ),
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                        padding: MaterialStateProperty.all(EdgeInsets.all(20)),
+                      ),
+                      child: Text(
+                        "READY TO WEAR",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      onPressed: () {},
+                    ).objectBottomCenter().p64()),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 35.0,
+          ),
+          Container(
+            height: 470,
+            width: 100,
+            padding: EdgeInsets.all(10),
             child: Card(
               child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("card1.png"),
-                    fit: BoxFit.cover,
-                    alignment: Alignment.topCenter,
-                  ),
-                ),
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                    padding: MaterialStateProperty.all(EdgeInsets.all(20)),
-                    ),
-                  child: Text("READY TO WEAR",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("card2.png"),
+                      fit: BoxFit.cover,
+                      alignment: Alignment.topCenter,
                     ),
                   ),
-                  onPressed: (){},
-                  ).objectBottomCenter().p64()
-              ),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.white),
+                      padding: MaterialStateProperty.all(EdgeInsets.all(20)),
+                    ),
+                    child: Text(
+                      "READY TO WEAR",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    onPressed: () {},
+                  ).objectBottomCenter().p64()),
             ),
           ),
-        ),
-        SizedBox(
-          height: 35.0,
-        ),
-        Container(
-          height: 470,
-          width: 100,
-          padding: EdgeInsets.all(10),
-          child: Card(
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("card2.png"),
-                  fit:BoxFit.cover,
-                  alignment: Alignment.topCenter,
-                ),
-              ),
-              child:  ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                    padding: MaterialStateProperty.all(EdgeInsets.all(20)),
-                    ),
-                  child: Text("READY TO WEAR",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold
+          SizedBox(
+            height: 35.0,
+          ),
+          Container(
+            height: 470,
+            width: 100,
+            padding: EdgeInsets.all(10),
+            child: Card(
+              child: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("card3.png"),
+                      fit: BoxFit.cover,
+                      alignment: Alignment.topCenter,
                     ),
                   ),
-                  onPressed: (){},
-                  ).objectBottomCenter().p64()
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.white),
+                      padding: MaterialStateProperty.all(EdgeInsets.all(20)),
+                    ),
+                    child: Text(
+                      "READY TO WEAR",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    onPressed: () {},
+                  ).objectBottomCenter().p64()),
             ),
           ),
-        ),
-        SizedBox(
-          height: 35.0,
-        ),
-        Container(
-          height: 470,
-          width: 100,
-          padding: EdgeInsets.all(10),
-          child: Card(
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("card3.png"),
-                  fit: BoxFit.cover,
-                  alignment: Alignment.topCenter,
-                ),
-              ),
-              child:  ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                    padding: MaterialStateProperty.all(EdgeInsets.all(20)),
-                    ),
-                  child: Text("READY TO WEAR",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold
+          SizedBox(
+            height: 35.0,
+          ),
+          Container(
+            height: 470,
+            width: 100,
+            padding: EdgeInsets.all(10),
+            child: Card(
+              child: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("card4.png"),
+                      fit: BoxFit.cover,
+                      alignment: Alignment.topCenter,
                     ),
                   ),
-                  onPressed: (){},
-                  ).objectBottomCenter().p64()
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.white),
+                      padding: MaterialStateProperty.all(EdgeInsets.all(20)),
+                    ),
+                    child: Text(
+                      "READY TO WEAR",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    onPressed: () {},
+                  ).objectBottomCenter().p64()),
             ),
           ),
-        ),
-        SizedBox(
-          height: 35.0,
-        ),
-        Container(
-          height: 470,
-          width: 100,
-          padding: EdgeInsets.all(10),
-          child: Card(
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("card4.png"),
-                  fit:BoxFit.cover,
-                  alignment: Alignment.topCenter,
-                ),
-              ),
-              child: ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                    padding: MaterialStateProperty.all(EdgeInsets.all(20)),
-                    ),
-                  child: Text("READY TO WEAR",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold
+          SizedBox(
+            height: 26.0,
+          ),
+          Container(
+            height: 470,
+            width: 100,
+            padding: EdgeInsets.all(10),
+            child: Card(
+              child: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("banner4.png"),
+                      fit: BoxFit.cover,
+                      alignment: Alignment.topCenter,
                     ),
                   ),
-                  onPressed: (){},
-                  ).objectBottomCenter().p64()
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.white),
+                      padding: MaterialStateProperty.all(EdgeInsets.all(20)),
+                    ),
+                    child: Text(
+                      "S A L E",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    onPressed: () {},
+                  ).objectBottomCenter().p64()),
             ),
           ),
-        ),
-        SizedBox(
-          height: 26.0,
-        ),
-        Container(
-          height: 470,
-          width: 100,
-          padding: EdgeInsets.all(10),
-          child: Card(
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("banner4.png"),
-                  fit: BoxFit.cover,
-                  alignment: Alignment.topCenter,
-                ),
-              ),
-              child: ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                    padding: MaterialStateProperty.all(EdgeInsets.all(20)),
-                    ),
-                  child: Text("S A L E",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold
-                    ),
-                  ),
-                  onPressed: (){},
-                  ).objectBottomCenter().p64()
-            ),
+          SizedBox(
+            height: 25.0,
           ),
-        ),
-        SizedBox(
-          height: 25.0,
-        ),
-        SingleChildScrollView(
-          physics: const ScrollPhysics(),
-          scrollDirection: Axis.horizontal,
-           child: Column(children: [
-            Container(
-              height: 150,
-              child: ListView.builder(
-                shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: prdcts.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      child: Column(
-                        children: [
-                          Container(
-                            padding: EdgeInsets.all(10),
-                            margin: EdgeInsets.only(left: 20),
-                            decoration: BoxDecoration(
-                                color: Colors.deepOrangeAccent,
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Image.asset(
-                              prdcts[index].image,
-                              height: 100,
-                              width: 100,
+          SingleChildScrollView(
+            physics: const ScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            child: Column(children: [
+              Container(
+                height: 150,
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: prdcts.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        child: Column(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(10),
+                              margin: EdgeInsets.only(left: 20),
+                              decoration: BoxDecoration(
+                                  color: Colors.deepOrangeAccent,
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Image.asset(
+                                prdcts[index].image,
+                                height: 100,
+                                width: 100,
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            prdcts[index].title,
-                            style: TextStyle(color: Colors.black),
-                            textAlign: TextAlign.center,
-                          )
-                        ],
-                      ),
-                    );
-                  }),
-            ),
-          ]),
-        ),
-         SizedBox(
-          height: 25.0,
-        ),
-         Container(
-          margin: EdgeInsets.all(10),
-          color: Color.fromARGB(255, 245, 207, 204),
-           child: Column(
-            children: [
-                  Container(
-                    padding: EdgeInsets.only(
-                      left: 10,
-                      right: 10
-                    ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              prdcts[index].title,
+                              style: TextStyle(color: Colors.black),
+                              textAlign: TextAlign.center,
+                            )
+                          ],
+                        ),
+                      );
+                    }),
+              ),
+            ]),
+          ),
+          SizedBox(
+            height: 25.0,
+          ),
+          Container(
+            margin: EdgeInsets.all(10),
+            color: Color.fromARGB(255, 245, 207, 204),
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.only(left: 10, right: 10),
                   height: 400,
                   width: 500,
                   child: Image.asset(
-                  "card.jpg",
+                    "card.jpg",
                     fit: BoxFit.cover,
                     height: 300,
                     width: 400,
-              ).centered(),
+                  ).centered(),
+                ),
+                Text(
+                  "BEAUTY & FRAGRANCES",
+                  style: TextStyle(color: Colors.black, fontSize: 29),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: 25.0,
+                ),
+                Text(
+                  "Create your charm to leave a lasting impression by counting on our captivating and breathtaking fragranirresistible beauty products. Explore the world of our fragrances and beauty range available now!",
+                  style: TextStyle(color: Colors.black, fontSize: 16),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: 25.0,
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          Color.fromARGB(255, 245, 207, 204)),
+                      padding: MaterialStateProperty.all(EdgeInsets.all(20)),
+                      side: MaterialStateProperty.all(BorderSide(
+                        color: Colors.black,
+                        width: 5.0,
+                      ))),
+                  child: Text(
+                    "Shop Now",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                    ),
+                  ),
+                )
+              ],
             ),
-            Text(
-            "BEAUTY & FRAGRANCES",
-            style: TextStyle(color: Colors.black,fontSize: 29),
-            textAlign: TextAlign.center,
-                 ),
-            SizedBox(
-            height: 25.0,
-                 ),
-            Text(
-            "Create your charm to leave a lasting impression by counting on our captivating and breathtaking fragranirresistible beauty products. Explore the world of our fragrances and beauty range available now!",
-            style: TextStyle(
-              color: Colors.black,fontSize: 16
-              ),
-            textAlign: TextAlign.center,
-            ),
-           SizedBox(
-            height: 25.0,
-            ),
-            ElevatedButton(
-            onPressed: (){}, 
-            style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>
-            (Color.fromARGB(255, 245, 207, 204)),
-            padding: MaterialStateProperty.all(
-               EdgeInsets.all(20)),
-            side: MaterialStateProperty.all(
-              BorderSide(
-              color: Colors.black,
-              width: 5.0,
-              )
-             )
-            ),
-            child: Text("Shop Now",
-            style: TextStyle(
-            color: Colors.black,
-            fontSize: 20,
-            ),
-                 ),
-                 )
-                 ],
-             ),
-         ),
-      ]
-      )
-      
-        );
-}
+          ),
+        ]));
+  }
 }

@@ -60,7 +60,7 @@ class Product with ChangeNotifier {
         price: 9500,
         desc:
             'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
-        ScreenArguments(
+    ScreenArguments(
         id: '6',
         catid: '1',
         image: 'women1.png',
@@ -68,7 +68,7 @@ class Product with ChangeNotifier {
         price: 5850,
         desc:
             'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
-        ScreenArguments(
+    ScreenArguments(
         id: '7',
         catid: '1',
         image: 'women2.png',
@@ -76,7 +76,7 @@ class Product with ChangeNotifier {
         price: 6950,
         desc:
             'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
-        ScreenArguments(
+    ScreenArguments(
         id: '8',
         catid: '1',
         image: 'women3.png',
@@ -84,15 +84,15 @@ class Product with ChangeNotifier {
         price: 8950,
         desc:
             'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
-            ScreenArguments(
+    ScreenArguments(
         id: '9',
         catid: '3',
-        image: 'kidsproduct.jpeg',
+        image: 'product1.jpg',
         title: "SWIGGLES KID'S COMFORTABLE POLYESTER TROUSER",
         price: 399,
         desc:
             'These Trousers give you the quality, durability, and comfort for all your sporting activities. The Elasticity of the fabric makes it easy to wear. This fabric is so soft and doesnt irritate the skin.'),
-            ScreenArguments(
+    ScreenArguments(
         id: '10',
         catid: '3',
         image: 'product1.jpg',
@@ -100,7 +100,7 @@ class Product with ChangeNotifier {
         price: 4999,
         desc:
             'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
-            ScreenArguments(
+    ScreenArguments(
         id: '11',
         catid: '3',
         image: 'product1.jpg',
@@ -108,7 +108,7 @@ class Product with ChangeNotifier {
         price: 4999,
         desc:
             'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
-            ScreenArguments(
+    ScreenArguments(
         id: '12',
         catid: '3',
         image: 'product1.jpg',

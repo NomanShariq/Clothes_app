@@ -7,9 +7,9 @@ class CategoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Map> categories = [
-      {'id': '1', 'name': 'Women', 'image': 'assets/banner1.png'},
-      {'id': '2', 'name': 'Men', 'image': 'assets/banner2.png'},
-      {'id': '3', 'name': 'Kids', 'image': 'assets/kids.jpg'},
+      {'id': '1', 'name': 'Women', 'image': 'assets/images/banner1.png'},
+      {'id': '2', 'name': 'Men', 'image': 'assets/images/banner2.png'},
+      {'id': '3', 'name': 'Kids', 'image': 'assets/images/banner3.png'},
     ];
     return Scaffold(
         appBar: AppBar(
@@ -23,40 +23,41 @@ class CategoryPage extends StatelessWidget {
               height: 100,
               width: 250,
             ).centered()),
-         body:ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: categories.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    child: Column(
-                      children: [
-                        InkWell(
-                          hoverColor: Colors.white,
-                          onTap: (){
-                            Navigator.of(context).pushNamed("/allproducts",arguments: categories[index]["id"]);
-                          },
-                          child: Container(
-                            padding: EdgeInsets.all(10),
-                            margin: EdgeInsets.only(left: 20, top: 50),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Image.asset(
-                              categories[index]['image'],
-                              fit: BoxFit.fill,
-                              height: 100,
-                              width: 120,
-                            ),
-                          ),
+        body: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: categories.length,
+            itemBuilder: (context, index) {
+              return Container(
+                child: Column(
+                  children: [
+                    InkWell(
+                      hoverColor: Colors.white,
+                      onTap: () {
+                        Navigator.of(context).pushNamed("/allproducts",
+                            arguments: categories[index]["id"]);
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(10),
+                        margin: EdgeInsets.only(left: 20, top: 50),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Image.asset(
+                          categories[index]['image'],
+                          fit: BoxFit.fill,
+                          height: 100,
+                          width: 120,
                         ),
-                        Text(
-                          categories[index]['name'],
-                          style: TextStyle(color: Colors.black, fontSize: 29),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
+                      ),
                     ),
-                  );
-                }));
+                    Text(
+                      categories[index]['name'],
+                      style: TextStyle(color: Colors.black, fontSize: 29),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              );
+            }));
   }
 }

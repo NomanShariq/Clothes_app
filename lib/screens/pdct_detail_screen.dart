@@ -20,7 +20,7 @@ class DetailPage extends StatelessWidget {
               color: Colors.black,
             ),
             title: Image.asset(
-              "logo.png",
+              "assets/images/logo.png",
               height: 100,
               width: 250,
             ).centered(),
