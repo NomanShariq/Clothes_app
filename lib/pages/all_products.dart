@@ -23,7 +23,7 @@ class Allproducts extends StatelessWidget {
             color: Colors.black,
           ),
           title: Image.asset(
-            "logo.png",
+            "images/logo.png",
             height: 100,
             width: 250,
           ).centered()),

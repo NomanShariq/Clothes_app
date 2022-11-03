@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:clothing_app/pages/Category_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -26,10 +24,8 @@ class Homepage extends StatelessWidget {
             size: 30,
             color: Colors.black,
           ),
-          title: Image.asset(
-            "logo.png",
-            height: 100,
-            width: 250,
+          title: Image(
+            image: AssetImage("images/logo.png"),
           ).centered(),
           actions: <Widget>[
             Padding(
@@ -102,22 +98,23 @@ class Homepage extends StatelessWidget {
         //   ),
         // ),
         body: ListView(children: [
-          SizedBox(
+          Container(
             height: 400.0,
             width: double.infinity,
             child: Carousel(
               images: [
                 Image.asset(
-                  "assets/images/banner1.png",
+                  "images/banner1.png",
                   fit: BoxFit.fill,
                 ),
                 Image.asset(
-                  "assets/images/banner2.png",
+                  "images/banner2.png",
                   fit: BoxFit.cover,
                 ),
                 Image.asset(
-                  "assets/images/banner3.png",
+                  "images/banner3.png",
                   fit: BoxFit.fill,
+                  // )
                 )
               ],
             ),
@@ -144,58 +141,14 @@ class Homepage extends StatelessWidget {
             height: 35.0,
           ),
           Container(
-            height: 470,
-            width: 80,
-            padding: EdgeInsets.all(10),
-            child: ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const CategoryPage()),
-                );
-              },
-              child: Card(
-                child: Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("card1.png"),
-                        fit: BoxFit.cover,
-                        alignment: Alignment.topCenter,
-                      ),
-                    ),
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.white),
-                        padding: MaterialStateProperty.all(EdgeInsets.all(20)),
-                      ),
-                      child: Text(
-                        "READY TO WEAR",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      onPressed: () {},
-                    ).objectBottomCenter().p64()),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 35.0,
-          ),
-          Container(
-            height: 470,
+            height: 400,
             width: 100,
             padding: EdgeInsets.all(10),
             child: Card(
               child: Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("card2.png"),
+                      image: AssetImage("images/card1.png"),
                       fit: BoxFit.cover,
                       alignment: Alignment.topCenter,
                     ),
@@ -221,14 +174,14 @@ class Homepage extends StatelessWidget {
             height: 35.0,
           ),
           Container(
-            height: 470,
+            height: 400,
             width: 100,
             padding: EdgeInsets.all(10),
             child: Card(
               child: Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("card3.png"),
+                      image: AssetImage("images/card2.png"),
                       fit: BoxFit.cover,
                       alignment: Alignment.topCenter,
                     ),
@@ -254,14 +207,47 @@ class Homepage extends StatelessWidget {
             height: 35.0,
           ),
           Container(
-            height: 470,
+            height: 400,
             width: 100,
             padding: EdgeInsets.all(10),
             child: Card(
               child: Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("card4.png"),
+                      image: AssetImage("images/card3.png"),
+                      fit: BoxFit.cover,
+                      alignment: Alignment.topCenter,
+                    ),
+                  ),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.white),
+                      padding: MaterialStateProperty.all(EdgeInsets.all(20)),
+                    ),
+                    child: Text(
+                      "READY TO WEAR",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    onPressed: () {},
+                  ).objectBottomCenter().p64()),
+            ),
+          ),
+          SizedBox(
+            height: 35.0,
+          ),
+          Container(
+            height: 400,
+            width: 100,
+            padding: EdgeInsets.all(10),
+            child: Card(
+              child: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("images/card4.png"),
                       fit: BoxFit.cover,
                       alignment: Alignment.topCenter,
                     ),
@@ -287,14 +273,14 @@ class Homepage extends StatelessWidget {
             height: 26.0,
           ),
           Container(
-            height: 470,
-            width: 100,
+            height: 400,
+            width: double.infinity,
             padding: EdgeInsets.all(10),
             child: Card(
               child: Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("banner4.png"),
+                      image: AssetImage("images/banner4.png"),
                       fit: BoxFit.cover,
                       alignment: Alignment.topCenter,
                     ),
@@ -373,7 +359,7 @@ class Homepage extends StatelessWidget {
                   height: 400,
                   width: 500,
                   child: Image.asset(
-                    "card.jpg",
+                    "images/card.jpg",
                     fit: BoxFit.cover,
                     height: 300,
                     width: 400,

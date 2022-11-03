@@ -22,7 +22,7 @@ class ProductDetail extends StatelessWidget {
           color: Colors.black,
         ),
         title: Image.asset(
-          "assets/images/logo.png",
+          "assets/logo.png",
           height: 100,
           width: 230,
         ).centered(),

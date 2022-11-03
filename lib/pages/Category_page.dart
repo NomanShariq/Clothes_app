@@ -7,9 +7,9 @@ class CategoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Map> categories = [
-      {'id': '1', 'name': 'Women', 'image': 'assets/images/banner1.png'},
-      {'id': '2', 'name': 'Men', 'image': 'assets/images/banner2.png'},
-      {'id': '3', 'name': 'Kids', 'image': 'assets/images/banner3.png'},
+      {'id': '1', 'name': 'Women', 'image': 'images/banner1.png'},
+      {'id': '2', 'name': 'Men', 'image': 'images/banner2.png'},
+      {'id': '3', 'name': 'Kids', 'image': 'images/banner3.png'},
     ];
     return Scaffold(
         appBar: AppBar(
@@ -19,7 +19,7 @@ class CategoryPage extends StatelessWidget {
               color: Colors.black,
             ),
             title: Image.asset(
-              "logo.png",
+              "images/logo.png",
               height: 100,
               width: 250,
             ).centered()),

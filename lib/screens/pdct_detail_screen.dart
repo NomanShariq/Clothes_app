@@ -7,7 +7,7 @@ import '../models/screen_arguements.dart';
 class DetailPage extends StatelessWidget {
   const DetailPage({Key? key}) : super(key: key);
 
-  @override 
+  @override
   Widget build(BuildContext context) {
     final productId = ModalRoute.of(context)?.settings.arguments as String;
     final loadedPdt = Provider.of<Product>(context).findById(productId);
@@ -15,15 +15,15 @@ class DetailPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-            iconTheme: IconThemeData(
-              size: 30,
-              color: Colors.black,
-            ),
-            title: Image.asset(
-              "assets/images/logo.png",
-              height: 100,
-              width: 250,
-            ).centered(),
+        iconTheme: IconThemeData(
+          size: 30,
+          color: Colors.black,
+        ),
+        title: Image.asset(
+          "images/logo.png",
+          height: 100,
+          width: 250,
+        ).centered(),
       ),
       body: Column(
         children: <Widget>[
@@ -31,29 +31,25 @@ class DetailPage extends StatelessWidget {
             height: 15.0,
           ),
           Container(
-            height: 300,
-            width: double.infinity,
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(30),
-                    bottomRight: Radius.circular(30),
-                  ),
-                  image: DecorationImage(
-                    image: AssetImage(loadedPdt.image as String),
-                  )),
-            ) 
-            ),
-            SizedBox(
+              height: 300,
+              width: double.infinity,
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(30),
+                    ),
+                    image: DecorationImage(
+                      image: AssetImage(loadedPdt.image as String),
+                    )),
+              )),
+          SizedBox(
             height: 4.0,
           ),
           Text(
             loadedPdt.title,
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold
-            ),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ).centered(),
           Padding(
             padding: const EdgeInsets.all(15.0),
@@ -84,7 +80,7 @@ class DetailPage extends StatelessWidget {
           Icons.shopping_cart,
           size: 30,
           color: Colors.black,
-        ).badge(color:Colors.black,count: cart.items.length),
+        ).badge(color: Colors.black, count: cart.items.length),
       ),
     );
   }
