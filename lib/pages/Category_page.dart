@@ -9,9 +9,10 @@ class CategoryPage extends StatelessWidget {
     List<Map> categories = [
       {'id': '1', 'name': 'Women', 'image': 'images/banner1.png'},
       {'id': '2', 'name': 'Men', 'image': 'images/banner2.png'},
-      {'id': '3', 'name': 'Kids', 'image': 'images/banner3.png'},
+      {'id': '3', 'name': 'Kids', 'image': 'images/kids.jpg'},
     ];
     return Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
             backgroundColor: Colors.white,
             iconTheme: IconThemeData(
@@ -38,7 +39,7 @@ class CategoryPage extends StatelessWidget {
                       },
                       child: Container(
                         padding: EdgeInsets.all(10),
-                        margin: EdgeInsets.only(left: 20, top: 50),
+                        margin: EdgeInsets.only(top: 50),
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10)),
@@ -50,10 +51,15 @@ class CategoryPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Text(
-                      categories[index]['name'],
-                      style: TextStyle(color: Colors.black, fontSize: 29),
-                      textAlign: TextAlign.center,
+                    Container(
+                      margin: EdgeInsets.only(left: 30),
+                      child: Text(
+                        categories[index]['name'],
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 24,
+                        ),
+                      ),
                     ),
                   ],
                 ),
