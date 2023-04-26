@@ -1,0 +1,40 @@
+{
+    "Products" : [
+        {
+            "id": 1,
+            "name": "Men's  Denim Jeans",
+            "desc":
+            "Jeans-men pents-trendy and stylish stretch denim pent",
+            "colour": "Black",
+            "price": 2000,
+            "image": "https://static-01.daraz.pk/p/cfe785ca1a327360ba996fe3cae47429.jpg"
+        },
+        {
+            "id": 2,
+            "name": "BLACK-VISCOSE-SHALWAR SUIT",
+            "desc":
+            "lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ",
+            "colour": "Black",
+            "price": 1999,
+            "image": "https://cdn.shopify.com/s/files/1/0464/1731/3955/products/GSSB21-017-BLACK_f0fd8ed1-074e-4e0a-8206-b6cdaea32eb3_1800x1800.jpg?v=1628250861"
+        },
+        {
+            "id": 3,
+            "name": "CP Company Black Goggle Lens Cargo Shorts",
+            "desc":
+            "CP Company Black Goggle Shorts",
+            "colour": "black",
+            "price": 4999,
+            "image": "https://44ghwl2qa9b22r3up33nuww1-wpengine.netdna-s/02/CP-Company-Black-Goggle-Lens-Cargo-Shorts.jpg"
+        },
+        {
+            "id": 4,
+            "name": "Dhingra Mens Slim Fit Tuxedo 3pcs Suit",
+            "desc":
+            "(Coat Pant and Waistcoat)",
+            "colour": "Black",
+            "price": 1294,
+            "image": "https://m.media-amazon.com/images/I/61OX5DRvudL._UX679_.jpg"
+        }
+    ]
+}
