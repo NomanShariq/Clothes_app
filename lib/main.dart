@@ -15,10 +15,12 @@ import 'package:provider/provider.dart';
 import 'pages/checkout_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -34,17 +36,17 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: "/home",
         routes: {
-          "/": (context) => LoginPage(),
+          "/": (context) => const LoginPage(),
           "/home": (context) => Homepage(),
           "/category": (context) => const CategoryPage(),
           "/detail": (context) => const DetailPage(),
           // "/cart":(context) => Cartscreen(),
           "/allproducts": (context) => const Allproducts(),
           "/cartscreen": (context) => const CartScreen(),
-          "/signup": (context) => SignUpPage(),
-          "/profilepage": (context) => ProfilePage(),
-          "/settingpage": (context) => SettingsPage(),
-          "/checkoutpage": (context) => CheckoutScreen(),
+          "/signup": (context) => const SignUpPage(),
+          "/profilepage": (context) => const ProfilePage(),
+          "/settingpage": (context) => const SettingsPage(),
+          "/checkoutpage": (context) => const CheckoutScreen(),
         },
       ),
     );

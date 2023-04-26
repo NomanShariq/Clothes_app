@@ -1,4 +1,3 @@
-import 'package:clothing_app/pages/Category_page.dart';
 import 'package:clothing_app/pages/all_products.dart';
 import 'package:clothing_app/pages/login_page.dart';
 import 'package:clothing_app/pages/profile_page.dart';
@@ -7,6 +6,8 @@ import 'package:flutter/material.dart';
 import '../pages/home__page.dart';
 
 class MyDrawer extends StatefulWidget {
+  const MyDrawer({Key? key}) : super(key: key);
+
   @override
   _MyDrawerState createState() => _MyDrawerState();
 }
@@ -14,7 +15,7 @@ class MyDrawer extends StatefulWidget {
 class _MyDrawerState extends State<MyDrawer> {
   final List<Widget> _pages = [
     Homepage(),
-    ProfilePage(),
+    const ProfilePage(),
     const Allproducts(),
   ];
 
@@ -78,7 +79,7 @@ class _MyDrawerState extends State<MyDrawer> {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: ((context) => ProfilePage()),
+                  builder: ((context) => const ProfilePage()),
                 ),
               ),
               leading: const Icon(Icons.person),
@@ -94,7 +95,7 @@ class _MyDrawerState extends State<MyDrawer> {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: ((context) => SettingsPage()),
+                  builder: ((context) => const SettingsPage()),
                 ),
               ),
               leading: const Icon(Icons.settings),
@@ -120,7 +121,7 @@ class _MyDrawerState extends State<MyDrawer> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: ((context) => LoginPage()),
+                    builder: ((context) => const LoginPage()),
                   ),
                 );
               },

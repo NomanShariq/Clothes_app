@@ -67,7 +67,7 @@ class _DetailPageState extends State<DetailPage> {
           const SizedBox(
             height: 15.0,
           ),
-          Container(
+          SizedBox(
               height: 300,
               width: double.infinity,
               child: Container(
@@ -78,7 +78,7 @@ class _DetailPageState extends State<DetailPage> {
                       bottomRight: Radius.circular(30),
                     ),
                     image: DecorationImage(
-                      image: AssetImage(loadedPdt.image as String),
+                      image: AssetImage(loadedPdt.image),
                     )),
               )),
           const SizedBox(
@@ -91,7 +91,7 @@ class _DetailPageState extends State<DetailPage> {
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: Text(
-              '${loadedPdt.desc}',
+              loadedPdt.desc,
               style: const TextStyle(
                 fontSize: 20,
               ),

@@ -4,7 +4,7 @@ import '../models/cart.dart';
 class CheckoutItem extends StatelessWidget {
   final CartItem cartItem;
 
-  CheckoutItem(this.cartItem);
+  const CheckoutItem(this.cartItem, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class CheckoutItem extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Container(
+          SizedBox(
             width: 180,
             child: Text(
               cartItem.name,

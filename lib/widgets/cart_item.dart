@@ -9,13 +9,13 @@ class CartProduct extends StatefulWidget {
   final double quantity;
   final double price;
 
-  CartProduct(
+  const CartProduct(
     this.id,
     this.productId,
     this.quantity,
     this.price,
-    this.name,
-  );
+    this.name, {Key? key}
+  ) : super(key: key);
 
   @override
   State<CartProduct> createState() => _CartProductState();

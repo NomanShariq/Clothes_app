@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'home__page.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -148,7 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => SignUpPage(),
+                          builder: (context) => const SignUpPage(),
                         ),
                       );
                     },

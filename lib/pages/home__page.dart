@@ -1,6 +1,5 @@
 import 'package:clothing_app/pages/Category_page.dart';
 import 'package:clothing_app/pages/login_page.dart';
-import 'package:clothing_app/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -94,7 +93,7 @@ class Homepage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: ((context) => LoginPage()),
+                        builder: ((context) => const LoginPage()),
                       ),
                     );
                   },
@@ -119,9 +118,9 @@ class Homepage extends StatelessWidget {
             ),
           ],
         ),
-        drawer: MyDrawer(),
+        drawer: const MyDrawer(),
         body: ListView(children: [
-          Container(
+          SizedBox(
             height: 400.0,
             width: double.infinity,
             child: Carousel(
@@ -337,7 +336,7 @@ class Homepage extends StatelessWidget {
             physics: const ScrollPhysics(),
             scrollDirection: Axis.horizontal,
             child: Column(children: [
-              Container(
+              SizedBox(
                 height: 150,
                 child: ListView.builder(
                     shrinkWrap: true,

@@ -7,11 +7,11 @@ class PdtItem extends StatelessWidget {
   final String image;
   final String price;
 
-  PdtItem({
+  const PdtItem({Key? key, 
     required this.name,
     required this.image,
     required this.price,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class PdtItem extends StatelessWidget {
             backgroundColor: Colors.white,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
-                side: BorderSide(color: Colors.black)),
+                side: const BorderSide(color: Colors.black)),
           ),
           onPressed: () {
             Navigator.of(context).pushNamed("/detail", arguments: product.id);
@@ -36,7 +36,7 @@ class PdtItem extends StatelessWidget {
                 decoration: BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                  image: AssetImage(image as String),
+                  image: AssetImage(image),
                 )),
               ),
               footer: GridTileBar(
@@ -44,7 +44,7 @@ class PdtItem extends StatelessWidget {
                 title: Text(name),
                 trailing: Text(
                   price,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     color: Colors.white,
                   ),
