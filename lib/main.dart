@@ -6,40 +6,42 @@ import 'package:clothing_app/pages/login_page.dart';
 import 'package:clothing_app/pages/Category_page.dart';
 import 'package:clothing_app/screens/cart_screen.dart';
 import 'package:clothing_app/screens/pdct_detail_screen.dart';
+import 'package:clothing_app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(
           value: Product(),
-          ),
-          ChangeNotifierProvider.value(
+        ),
+        ChangeNotifierProvider.value(
           value: Cart(),
-          ),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-      initialRoute: "/home",
-      routes: {
-      "/" :(context) => LoginPage(),
-      "/home" :(context) => Homepage(),
-      "/category" :(context) => CategoryPage(),
-      "/detail" :(context) => DetailPage(),
-      // "/cart":(context) => Cartscreen(),
-      "/allproducts":(context) => Allproducts(),
-      "/cartscreen":(context) => CartScreen(),
-      },
+        theme: AppTheme.lightTheme,
+        initialRoute: "/",
+        routes: {
+          "/": (context) => LoginPage(),
+          "/home": (context) => const Homepage(),
+          "/category": (context) => const CategoryPage(),
+          "/detail": (context) => const DetailPage(),
+          // "/cart":(context) => Cartscreen(),
+          "/allproducts": (context) => const Allproducts(),
+          "/cartscreen": (context) => const CartScreen(),
+        },
       ),
-      
     );
   }
 }
-

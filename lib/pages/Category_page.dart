@@ -15,7 +15,7 @@ class CategoryPage extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: AppBar(
             backgroundColor: Colors.white,
-            iconTheme: IconThemeData(
+            iconTheme: const IconThemeData(
               size: 30,
               color: Colors.black,
             ),
@@ -38,8 +38,8 @@ class CategoryPage extends StatelessWidget {
                             arguments: categories[index]["id"]);
                       },
                       child: Container(
-                        padding: EdgeInsets.all(10),
-                        margin: EdgeInsets.only(top: 50),
+                        padding: const EdgeInsets.all(10),
+                        margin: const EdgeInsets.only(top: 50),
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10)),
@@ -52,10 +52,10 @@ class CategoryPage extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(left: 30),
+                      margin: const EdgeInsets.only(left: 30),
                       child: Text(
                         categories[index]['name'],
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.black,
                           fontSize: 24,
                         ),

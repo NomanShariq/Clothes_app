@@ -15,7 +15,7 @@ class DetailPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           size: 30,
           color: Colors.black,
         ),
@@ -27,7 +27,7 @@ class DetailPage extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-          SizedBox(
+          const SizedBox(
             height: 15.0,
           ),
           Container(
@@ -36,7 +36,7 @@ class DetailPage extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(30),
                       bottomRight: Radius.circular(30),
                     ),
@@ -44,18 +44,18 @@ class DetailPage extends StatelessWidget {
                       image: AssetImage(loadedPdt.image as String),
                     )),
               )),
-          SizedBox(
+          const SizedBox(
             height: 4.0,
           ),
           Text(
             loadedPdt.title,
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ).centered(),
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: Text(
               '${loadedPdt.desc}',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
               ),
             ),
@@ -64,7 +64,7 @@ class DetailPage extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Text(
               'Price: \$${loadedPdt.price}',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
               ),
             ).objectCenterLeft(),
@@ -76,7 +76,7 @@ class DetailPage extends StatelessWidget {
         onPressed: () {
           cart.addItem(productId, loadedPdt.title, loadedPdt.price);
         },
-        child: Icon(
+        child: const Icon(
           Icons.shopping_cart,
           size: 30,
           color: Colors.black,

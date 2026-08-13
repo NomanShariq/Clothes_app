@@ -1,5 +1,4 @@
 import 'package:clothing_app/models/screen_arguements.dart';
-import 'package:clothing_app/widgets/catalog_header.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +18,6 @@ class PdtItem extends StatelessWidget {
     final product = Provider.of<ScreenArguments>(context);
 
     return Scaffold(
-
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ElevatedButton(
@@ -36,7 +34,7 @@ class PdtItem extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                      fit: BoxFit.cover,
+                  fit: BoxFit.cover,
                   image: AssetImage(image as String),
                 )),
               ),
