@@ -7,15 +7,15 @@ class AppTheme {
 
   static ThemeData get lightTheme {
     return ThemeData(
+      brightness: Brightness.light,
       scaffoldBackgroundColor: AppColors.background,
       primaryColor: AppColors.primary,
-      fontFamily: 'Poppins', // agar custom font use kar rahe ho
       colorScheme: ColorScheme.fromSeed(
         seedColor: AppColors.primary,
+        brightness: Brightness.light,
         primary: AppColors.primary,
         error: AppColors.error,
       ),
-
       appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.background,
         elevation: 0,
@@ -26,7 +26,6 @@ class AppTheme {
           fontWeight: FontWeight.w600,
         ),
       ),
-
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,
@@ -39,13 +38,6 @@ class AppTheme {
           textStyle: AppTextStyles.buttonText,
         ),
       ),
-
-      textButtonTheme: TextButtonThemeData(
-        style: TextButton.styleFrom(
-          foregroundColor: AppColors.primary,
-        ),
-      ),
-
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: AppColors.inputFill,
@@ -64,21 +56,73 @@ class AppTheme {
           borderRadius: BorderRadius.circular(14),
           borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
         ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14),
-          borderSide: const BorderSide(color: AppColors.error, width: 1),
-        ),
       ),
-
+      cardColor: Colors.white,
       dividerTheme: const DividerThemeData(
         color: AppColors.border,
         thickness: 1,
       ),
+    );
+  }
 
-      textTheme: const TextTheme(
-        headlineMedium: AppTextStyles.heading,
-        bodyMedium: AppTextStyles.subtitle,
-        labelLarge: AppTextStyles.label,
+  static ThemeData get darkTheme {
+    const darkBg = Color(0xFF121212);
+    const darkSurface = Color(0xFF1E1E1E);
+
+    return ThemeData(
+      brightness: Brightness.dark,
+      scaffoldBackgroundColor: darkBg,
+      primaryColor: Colors.white,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: Colors.white,
+        brightness: Brightness.dark,
+        primary: Colors.white,
+        error: AppColors.error,
+      ),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: darkBg,
+        elevation: 0,
+        iconTheme: IconThemeData(color: Colors.white),
+        titleTextStyle: TextStyle(
+          color: Colors.white,
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
+          elevation: 0,
+          minimumSize: const Size.fromHeight(54),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(14),
+          ),
+        ),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: darkSurface,
+        hintStyle: const TextStyle(color: Colors.grey),
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14),
+          borderSide: BorderSide.none,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14),
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14),
+          borderSide: const BorderSide(color: Colors.white, width: 1.5),
+        ),
+      ),
+      cardColor: darkSurface,
+      dividerTheme: const DividerThemeData(
+        color: Colors.grey,
+        thickness: 0.5,
       ),
     );
   }

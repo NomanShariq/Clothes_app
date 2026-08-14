@@ -5,13 +5,17 @@ class ProductCardData {
   final String title;
   final double rating;
   final double price;
+  final double? originalPrice;
 
   const ProductCardData({
     required this.image,
     required this.title,
     required this.rating,
     required this.price,
+    this.originalPrice,
   });
+
+  bool get isOnSale => originalPrice != null && originalPrice! > price;
 }
 
 class ProductCard extends StatelessWidget {
@@ -25,63 +29,93 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        width: 160,
-        margin: const EdgeInsets.only(right: 14),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: Colors.grey.shade200),
-        ),
+      child: SizedBox(
+        width: 155,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(16)),
-              child: Image.asset(
-                product.image,
-                height: 140,
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    product.title,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
+            Stack(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(14),
+                  child: AspectRatio(
+                    aspectRatio: 0.95,
+                    child: Image.asset(product.image, fit: BoxFit.cover),
+                  ),
+                ),
+                if (product.isOnSale)
+                  Positioned(
+                    top: 8,
+                    left: 8,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 7, vertical: 3),
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: const Text(
+                        "SALE",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 9,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 0.5,
+                        ),
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 4),
-                  Row(
-                    children: [
-                      const Icon(Icons.star, color: Colors.amber, size: 14),
-                      const SizedBox(width: 2),
-                      Text(
-                        product.rating.toStringAsFixed(1),
-                        style: const TextStyle(fontSize: 12),
-                      ),
-                    ],
+              ],
+            ),
+            const SizedBox(height: 6),
+            Text(
+              product.title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+                color: Colors.black87,
+              ),
+            ),
+            const SizedBox(height: 2),
+            Row(
+              children: [
+                const Icon(Icons.star, color: Colors.amber, size: 13),
+                const SizedBox(width: 3),
+                Text(
+                  product.rating.toStringAsFixed(1),
+                  style: TextStyle(fontSize: 11, color: Colors.grey.shade600),
+                ),
+              ],
+            ),
+            const SizedBox(height: 2),
+            Row(
+              children: [
+                Text(
+                  "Rs ${product.price.toStringAsFixed(0)}",
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
                   ),
-                  const SizedBox(height: 4),
-                  Text(
-                    "Rs ${product.price.toStringAsFixed(0)}",
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                ),
+                if (product.isOnSale) ...[
+                  const SizedBox(width: 6),
+                  Flexible(
+                    child: Text(
+                      "Rs ${product.originalPrice!.toStringAsFixed(0)}",
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 11,
+                        color: Colors.grey.shade500,
+                        decoration: TextDecoration.lineThrough,
+                      ),
                     ),
                   ),
                 ],
-              ),
+              ],
             ),
           ],
         ),

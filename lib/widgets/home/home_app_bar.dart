@@ -1,18 +1,13 @@
+import 'package:clothing_app/theme/theme_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:velocity_x/velocity_x.dart';
+import 'package:provider/provider.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final int cartItemCount;
   final VoidCallback onSearchTap;
-  final VoidCallback onProfileTap;
-  final VoidCallback onCartTap;
 
   const HomeAppBar({
     Key? key,
-    required this.cartItemCount,
     required this.onSearchTap,
-    required this.onProfileTap,
-    required this.onCartTap,
   }) : super(key: key);
 
   @override
@@ -20,34 +15,38 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return AppBar(
       automaticallyImplyLeading: false,
       elevation: 0,
-      backgroundColor: Colors.white,
-      title: const Image(
-        width: 230,
-        image: AssetImage("images/logo.png"),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      titleSpacing: 20,
+      title: const Text(
+        "BONANZA SATRANGI",
+        style: TextStyle(
+          fontSize: 17,
+          fontWeight: FontWeight.bold,
+          letterSpacing: 1.0,
+          color: Colors.black,
+        ),
       ),
       actions: [
-        Padding(
-          padding: const EdgeInsets.only(right: 20.0),
-          child: GestureDetector(
-            onTap: onSearchTap,
-            child: const Icon(Icons.search, size: 26.0),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(right: 20.0),
-          child: GestureDetector(
-            onTap: onProfileTap,
-            child: const Icon(Icons.account_circle, size: 26.0),
-          ),
+        IconButton(
+          icon: const Icon(Icons.search, size: 24),
+          onPressed: onSearchTap,
         ),
         IconButton(
-          icon: const Icon(Icons.shopping_cart)
-              .badge(color: Colors.grey, count: cartItemCount),
-          onPressed: onCartTap,
+          icon: Icon(
+            themeProvider.isDarkMode
+                ? Icons.dark_mode_outlined
+                : Icons.light_mode_outlined,
+            size: 24,
+          ),
+          onPressed: () =>
+              themeProvider.toggleTheme(!themeProvider.isDarkMode),
         ),
+        const SizedBox(width: 8),
       ],
     );
   }

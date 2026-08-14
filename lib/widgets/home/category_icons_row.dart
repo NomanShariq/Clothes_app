@@ -20,32 +20,33 @@ class CategoryIconsRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: categories.map((category) {
           return Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 6),
+              padding: const EdgeInsets.symmetric(horizontal: 8),
               child: GestureDetector(
                 onTap: () => onTap(category),
                 child: Column(
                   children: [
                     ClipRRect(
-                      borderRadius: BorderRadius.circular(14),
+                      borderRadius: BorderRadius.circular(16),
                       child: AspectRatio(
-                        aspectRatio: 1.3,
+                        aspectRatio: 1.0,
                         child: Image.asset(
                           category.imagePath,
                           fit: BoxFit.cover,
                         ),
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 10),
                     Text(
                       category.label,
                       style: const TextStyle(
-                        fontSize: 12,
+                        fontSize: 13,
                         fontWeight: FontWeight.w600,
+                        color: Colors.black87,
                       ),
                     ),
                   ],

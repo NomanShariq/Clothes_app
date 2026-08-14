@@ -10,18 +10,30 @@ class SectionHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             title,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: const TextStyle(
+              fontSize: 17,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 0.3,
+              color: Colors.black,
+            ),
           ),
           if (onViewAll != null)
-            TextButton(
-              onPressed: onViewAll,
-              child: const Text("View All"),
+            GestureDetector(
+              onTap: onViewAll,
+              child: Text(
+                "View All →",
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.grey.shade600,
+                ),
+              ),
             ),
         ],
       ),
