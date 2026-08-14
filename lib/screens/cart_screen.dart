@@ -7,19 +7,16 @@ import 'package:velocity_x/velocity_x.dart';
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
-
     final cart = Provider.of<Cart>(context);
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text("My Cart",
-        style: TextStyle(
-          fontSize: 30,
-          color: Colors.black),
+        title: const Text(
+          "My Cart",
+          style: TextStyle(fontSize: 30, color: Colors.black),
         ).centered(),
       ),
       //  cart.items.isEmpty ? Column(
@@ -41,23 +38,18 @@ class CartScreen extends StatelessWidget {
       body: Column(
         children: <Widget>[
           ListView.builder(
-            shrinkWrap: true,
-            itemCount: cart.items.length,
-            itemBuilder:(ctx,i) => CartPdt(
-              cart.items.keys.toList()[i],
-              cart.items.values.toList()[i].id,
-              cart.items.values.toList()[i].price,
-              cart.items.values.toList()[i].quantity,
-              cart.items.values.toList()[i].name
-          )),
-            ElevatedButton(
-              onPressed: (){}, 
-              child: Text("Checkout",
-              style:TextStyle(
-                color:Colors.white,
-                fontSize:20)
-                )
-              ),
+              shrinkWrap: true,
+              itemCount: cart.items.length,
+              itemBuilder: (ctx, i) => CartPdt(
+                  cart.items.keys.toList()[i],
+                  cart.items.values.toList()[i].id,
+                  cart.items.values.toList()[i].price,
+                  cart.items.values.toList()[i].quantity,
+                  cart.items.values.toList()[i].name)),
+          ElevatedButton(
+              onPressed: () {},
+              child: const Text("Checkout",
+                  style: TextStyle(color: Colors.white, fontSize: 20))),
         ],
       ),
     );

@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import '../models/cart.dart';
 
 class ProductDetail extends StatelessWidget {
-  ProductDetail({
+  const ProductDetail({
     Key? key,
   }) : super(key: key);
 
@@ -129,11 +129,10 @@ class ProductDetail extends StatelessWidget {
                             padding: const EdgeInsets.all(10),
                             child: ElevatedButton(
                               style: ButtonStyle(
-                                minimumSize: MaterialStateProperty.all(
+                                minimumSize: WidgetStateProperty.all(
                                     const Size(130, 50)),
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.blueGrey.shade800),
+                                backgroundColor: WidgetStateProperty.all<Color>(
+                                    Colors.blueGrey.shade800),
                               ),
                               onPressed: () {
                                 Navigator.pushNamed(context, "/cart");

@@ -1,4 +1,4 @@
-import 'package:clothing_app/pages/home__page.dart';
+import 'package:clothing_app/pages/home_page.dart';
 import 'package:clothing_app/pages/login_page.dart';
 import 'package:clothing_app/widgets/app_drawer.dart';
 import 'package:clothing_app/widgets/app_logo_header.dart';
@@ -29,7 +29,7 @@ class _State extends State<SignUpPage> {
     if (formkey.currentState!.validate()) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const Homepage()),
+        MaterialPageRoute(builder: (context) => Homepage()),
       );
     }
   }

@@ -1,5 +1,7 @@
 import 'package:clothing_app/models/screen_arguements.dart';
+import 'package:clothing_app/models/user_session.dart';
 import 'package:clothing_app/pages/Category_page.dart';
+import 'package:clothing_app/pages/profile_screen.dart';
 import 'package:clothing_app/widgets/home/banner_carousel.dart';
 import 'package:clothing_app/widgets/home/beauty_section.dart';
 import 'package:clothing_app/widgets/home/home_app_bar.dart';
@@ -31,7 +33,12 @@ class Homepage extends StatelessWidget {
       appBar: HomeAppBar(
         cartItemCount: cart.items.length,
         onSearchTap: () {},
-        onProfileTap: () => Navigator.pushNamed(context, "/"),
+        onProfileTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProfileScreen(email: UserSession.email),
+          ),
+        ),
         onCartTap: () => Navigator.pushNamed(context, "/cartscreen"),
       ),
       body: ListView(
@@ -47,8 +54,8 @@ class Homepage extends StatelessWidget {
 
           ElevatedButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
-              minimumSize: MaterialStateProperty.all(const Size(0, 50)),
+              backgroundColor: WidgetStateProperty.all<Color>(Colors.black),
+              minimumSize: WidgetStateProperty.all(const Size(0, 50)),
             ),
             onPressed: () {
               Navigator.push(

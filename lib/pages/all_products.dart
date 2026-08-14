@@ -18,7 +18,7 @@ class Allproducts extends StatelessWidget {
       appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.white,
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             size: 30,
             color: Colors.black,
           ),
@@ -28,11 +28,11 @@ class Allproducts extends StatelessWidget {
             width: 250,
           ).centered()),
       body: GridView.builder(
-        physics: ScrollPhysics(),
+        physics: const ScrollPhysics(),
         itemCount: prdcts.length,
         shrinkWrap: true,
         gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
           value: prdcts[i],
           child: PdtItem(

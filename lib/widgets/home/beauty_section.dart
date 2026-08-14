@@ -50,10 +50,10 @@ class BeautySection extends StatelessWidget {
           ElevatedButton(
             onPressed: onShopNowTap,
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(
+              backgroundColor: WidgetStateProperty.all<Color>(
                   const Color.fromARGB(255, 245, 207, 204)),
-              padding: MaterialStateProperty.all(const EdgeInsets.all(20)),
-              side: MaterialStateProperty.all(
+              padding: WidgetStateProperty.all(const EdgeInsets.all(20)),
+              side: WidgetStateProperty.all(
                   const BorderSide(color: Colors.black, width: 5.0)),
             ),
             child: const Text(

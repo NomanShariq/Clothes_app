@@ -10,7 +10,7 @@ class CatalogHeader extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           size: 30,
           color: Colors.black,
         ),
@@ -21,7 +21,7 @@ class CatalogHeader extends StatelessWidget {
         ).centered(),
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.shopping_cart),
+              icon: const Icon(Icons.shopping_cart),
               onPressed: () {
                 Navigator.pushNamed(context, "/cart");
               })

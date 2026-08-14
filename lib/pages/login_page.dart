@@ -1,4 +1,6 @@
-import 'package:clothing_app/pages/home__page.dart';
+import 'package:clothing_app/models/user_session.dart';
+import 'package:clothing_app/pages/home_page.dart';
+import 'package:clothing_app/pages/profile_screen.dart';
 import 'package:clothing_app/pages/sign_up_page.dart';
 import 'package:clothing_app/widgets/app_drawer.dart';
 import 'package:clothing_app/widgets/app_logo_header.dart';
@@ -18,10 +20,20 @@ class LoginPage extends StatefulWidget {
 
 class _State extends State<LoginPage> {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   void validate() {
     if (formkey.currentState!.validate()) {
-      Navigator.push(
+      UserSession.email = emailController.text.trim();
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const Homepage()),
       );
@@ -47,14 +59,15 @@ class _State extends State<LoginPage> {
                   subtitle: "Sign in to continue shopping",
                 ),
                 const SizedBox(height: 40),
-                const CustomTextField(
+                CustomTextField(
                   label: "Email",
                   hint: "you@example.com",
                   icon: Icons.mail_outline,
                   keyboardType: TextInputType.emailAddress,
+                  controller: emailController,
                 ),
                 const SizedBox(height: 22),
-                const PasswordField(),
+                PasswordField(controller: passwordController),
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(

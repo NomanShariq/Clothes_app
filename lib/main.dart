@@ -1,7 +1,7 @@
 import 'package:clothing_app/models/cart.dart';
 import 'package:clothing_app/models/screen_arguements.dart';
 import 'package:clothing_app/pages/all_products.dart';
-import 'package:clothing_app/pages/home__page.dart';
+import 'package:clothing_app/pages/home_page.dart';
 import 'package:clothing_app/pages/login_page.dart';
 import 'package:clothing_app/pages/Category_page.dart';
 import 'package:clothing_app/screens/cart_screen.dart';
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         theme: AppTheme.lightTheme,
         initialRoute: "/",
         routes: {
-          "/": (context) => LoginPage(),
+          "/": (context) => const LoginPage(),
           "/home": (context) => const Homepage(),
           "/category": (context) => const CategoryPage(),
           "/detail": (context) => const DetailPage(),

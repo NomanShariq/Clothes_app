@@ -9,13 +9,8 @@ class CartPdt extends StatefulWidget {
   final int quantity;
   final double price;
 
-  CartPdt(
-    this.id,
-    this.productid,
-    this.quantity,
-    this.price,
-    this.name,
-  );
+  const CartPdt(this.id, this.productid, this.quantity, this.price, this.name,
+      {super.key});
 
   @override
   State<CartPdt> createState() => _CartPdtState();
@@ -27,10 +22,8 @@ class _CartPdtState extends State<CartPdt> {
     return Dismissible(
       key: ValueKey(widget.id),
       direction: DismissDirection.startToEnd,
-      background: Container(
-        color: Colors.red
-        ),
-        onDismissed: Provider.of<Cart>(context).removeItem(widget.productid),
+      background: Container(color: Colors.red),
+      onDismissed: Provider.of<Cart>(context).removeItem(widget.productid),
       child: Card(
         child: ListTile(
           leading: CircleAvatar(

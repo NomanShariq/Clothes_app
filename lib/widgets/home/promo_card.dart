@@ -36,8 +36,8 @@ class PromoCard extends StatelessWidget {
           ),
           child: ElevatedButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-              padding: MaterialStateProperty.all(const EdgeInsets.all(20)),
+              backgroundColor: WidgetStateProperty.all<Color>(Colors.white),
+              padding: WidgetStateProperty.all(const EdgeInsets.all(20)),
             ),
             onPressed: onPressed,
             child: Text(
