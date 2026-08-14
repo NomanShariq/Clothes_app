@@ -1,3 +1,4 @@
+import 'package:clothing_app/widgets/fade_slide_in.dart';
 import 'package:flutter/material.dart';
 
 class AppLogoHeader extends StatelessWidget {
@@ -15,22 +16,32 @@ class AppLogoHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Center(
-          child: Image.asset("images/logo.png", height: 90),
+        FadeSlideIn(
+          child: Center(
+            child: Image.asset("images/logo.png", height: 90),
+          ),
         ),
         const SizedBox(height: 48),
-        Text(
-          title,
-          style: const TextStyle(
-            fontSize: 28,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 0.3,
+        FadeSlideIn(
+          delay: const Duration(milliseconds: 150),
+          child: Text(
+            title,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 0.3,
+            ),
           ),
         ),
         const SizedBox(height: 8),
-        Text(
-          subtitle,
-          style: TextStyle(fontSize: 15, color: Colors.grey.shade600),
+        FadeSlideIn(
+          delay: const Duration(milliseconds: 250),
+          child: Text(
+            subtitle,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 15, color: Colors.grey.shade600),
+          ),
         ),
       ],
     );

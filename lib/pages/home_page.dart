@@ -1,32 +1,119 @@
-import 'package:clothing_app/models/screen_arguements.dart';
 import 'package:clothing_app/models/user_session.dart';
 import 'package:clothing_app/pages/Category_page.dart';
 import 'package:clothing_app/pages/profile_screen.dart';
-import 'package:clothing_app/widgets/home/banner_carousel.dart';
-import 'package:clothing_app/widgets/home/beauty_section.dart';
+import 'package:clothing_app/widgets/home/app_bottom_nav.dart';
+import 'package:clothing_app/widgets/home/category_icons_row.dart';
+import 'package:clothing_app/widgets/home/hero_banner.dart';
 import 'package:clothing_app/widgets/home/home_app_bar.dart';
-import 'package:clothing_app/widgets/home/product_list_section.dart';
-import 'package:clothing_app/widgets/home/promo_card.dart';
+import 'package:clothing_app/widgets/home/media_banner_carousel.dart'
+    show MediaBannerCarousel, MediaType, MediaBannerItem;
+import 'package:clothing_app/widgets/home/product_card.dart';
+import 'package:clothing_app/widgets/home/section_header.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:velocity_x/velocity_x.dart';
 import '../models/cart.dart';
 
-class Homepage extends StatelessWidget {
+const String _ladiesImage = "images/ladies.jpg";
+const String _gentsImage = "images/gents.jpg";
+const String _kidsImage = "images/kids.jpg";
+
+class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
 
-  static const List<String> _promoCardImages = [
-    "images/card1.png",
-    "images/card2.png",
-    "images/card3.png",
-    "images/card4.png",
+  @override
+  State<Homepage> createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
+  int _navIndex = 0;
+
+  static const List<CategoryItem> _categories = [
+    CategoryItem(label: "Ladies", imagePath: _ladiesImage),
+    CategoryItem(label: "Gents", imagePath: _gentsImage),
+    CategoryItem(label: "Kids", imagePath: _kidsImage),
   ];
+
+  // Placeholder product lists — replace image/title/price later with real data
+  static const List<ProductCardData> _ladiesProducts = [
+    ProductCardData(
+        image: _ladiesImage, title: "Ladies Kurti", rating: 4.5, price: 4500),
+    ProductCardData(
+        image: _ladiesImage,
+        title: "Embroidered Suit",
+        rating: 4.7,
+        price: 6900),
+    ProductCardData(
+        image: _ladiesImage, title: "Lawn 3-Piece", rating: 4.3, price: 5200),
+    ProductCardData(
+        image: _ladiesImage, title: "Party Wear", rating: 4.8, price: 8900),
+  ];
+
+  static const List<ProductCardData> _gentsProducts = [
+    ProductCardData(
+        image: _gentsImage, title: "Men Denim Shirt", rating: 4.5, price: 9500),
+    ProductCardData(
+        image: _gentsImage, title: "Denim Jeans", rating: 4.6, price: 19500),
+    ProductCardData(
+        image: _gentsImage,
+        title: "Black Shalwar Suit",
+        rating: 4.4,
+        price: 38900),
+    ProductCardData(
+        image: _gentsImage, title: "Formal Shirt", rating: 4.2, price: 5900),
+  ];
+
+  static const List<ProductCardData> _kidsProducts = [
+    ProductCardData(
+        image: _kidsImage,
+        title: "Kids Festive Frock",
+        rating: 4.9,
+        price: 3500),
+    ProductCardData(
+        image: _kidsImage, title: "Kids Casual Wear", rating: 4.5, price: 2900),
+    ProductCardData(
+        image: _kidsImage, title: "Kids Party Dress", rating: 4.7, price: 4200),
+    ProductCardData(
+        image: _kidsImage, title: "Kids T-Shirt", rating: 4.3, price: 1800),
+  ];
+
+  Widget _buildProductSection({
+    required String title,
+    required List<ProductCardData> products,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SectionHeader(
+          title: title,
+          onViewAll: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const CategoryPage()),
+            );
+          },
+        ),
+        SizedBox(
+          height: 230,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            itemCount: products.length,
+            itemBuilder: (context, index) {
+              return ProductCard(
+                product: products[index],
+                onTap: () {},
+              );
+            },
+          ),
+        ),
+        const SizedBox(height: 24),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
-    final productdata = Provider.of<Product>(context);
-    final prdcts = productdata.items;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -41,65 +128,45 @@ class Homepage extends StatelessWidget {
         ),
         onCartTap: () => Navigator.pushNamed(context, "/cartscreen"),
       ),
+      bottomNavigationBar: AppBottomNav(
+        currentIndex: _navIndex,
+        onTap: (index) {
+          setState(() => _navIndex = index);
+          if (index == 3) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ProfileScreen(email: UserSession.email),
+              ),
+            );
+          }
+        },
+      ),
       body: ListView(
         children: [
-          const BannerCarousel(
-            images: [
-              "images/banner1.png",
-              "images/banner2.png",
-              "images/banner3.png",
-            ],
-          ),
-          const SizedBox(height: 35.0),
-
-          ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor: WidgetStateProperty.all<Color>(Colors.black),
-              minimumSize: WidgetStateProperty.all(const Size(0, 50)),
-            ),
-            onPressed: () {
+          const SizedBox(height: 16),
+          CategoryIconsRow(
+            categories: _categories,
+            onTap: (category) {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const CategoryPage()),
               );
             },
-            child: const Text("Our Categories"),
-          ).centered(),
-          const SizedBox(height: 35.0),
-
-          // 4 promo cards, ab sirf ek loop se
-          for (final imagePath in _promoCardImages) ...[
-            PromoCard(
-              imagePath: imagePath,
-              label: "READY TO WEAR",
-              onPressed: () {},
-            ),
-            const SizedBox(height: 35.0),
-          ],
-
-          PromoCard(
-            imagePath: "images/banner4.png",
-            label: "S A L E",
-            fontSize: 30,
-            width: double.infinity,
-            onPressed: () {},
           ),
-          const SizedBox(height: 25.0),
-
-          ProductListSection(
-            products: prdcts
-                .map((p) => ProductItemData(image: p.image, title: p.title))
-                .toList(),
+          const SizedBox(height: 24),
+          const MediaBannerCarousel(
+            items: [
+              MediaBannerItem(type: MediaType.image, path: _ladiesImage),
+              MediaBannerItem(type: MediaType.video, path: "videos/promo1.mp4"),
+              MediaBannerItem(type: MediaType.image, path: _gentsImage),
+              MediaBannerItem(type: MediaType.video, path: "videos/promo2.mp4"),
+            ],
           ),
-          const SizedBox(height: 25.0),
-
-          BeautySection(
-            imagePath: "images/card.jpg",
-            title: "BEAUTY & FRAGRANCES",
-            description:
-                "Create your charm to leave a lasting impression by counting on our captivating and breathtaking fragranirresistible beauty products. Explore the world of our fragrances and beauty range available now!",
-            onShopNowTap: () {},
-          ),
+          const SizedBox(height: 24),
+          _buildProductSection(title: "LADIES WEAR", products: _ladiesProducts),
+          _buildProductSection(title: "GENTS WEAR", products: _gentsProducts),
+          _buildProductSection(title: "KIDS WEAR", products: _kidsProducts),
         ],
       ),
     );
