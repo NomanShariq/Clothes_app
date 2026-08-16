@@ -1,3 +1,4 @@
+import 'package:clothing_app/models/wishlist.dart';
 import 'package:clothing_app/screens/cart_screen.dart';
 import 'package:clothing_app/widgets/home/product_card.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,8 @@ class _ProductDetailState extends State<ProductDetail> {
                 100)
             .round()
         : 0;
-
+    final wishlist = Provider.of<Wishlist>(context);
+    final isWishlisted = wishlist.isWishlisted(product.title);
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
@@ -86,18 +88,16 @@ class _ProductDetailState extends State<ProductDetail> {
                           right: 25,
                           child: GestureDetector(
                             onTap: () =>
-                                setState(() => _isWishlisted = !_isWishlisted),
+                                wishlist.toggle(product.title, product),
                             child: Container(
                               padding: const EdgeInsets.all(8),
                               decoration: const BoxDecoration(
-                                color: Colors.white,
-                                shape: BoxShape.circle,
-                              ),
+                                  color: Colors.white, shape: BoxShape.circle),
                               child: Icon(
-                                _isWishlisted
+                                isWishlisted
                                     ? Icons.favorite
                                     : Icons.favorite_border,
-                                color: Colors.black,
+                                color: Colors.red,
                                 size: 20,
                               ),
                             ),
@@ -295,7 +295,7 @@ class _ProductDetailState extends State<ProductDetail> {
                             "Premium quality fabric with elegant design, perfect for everyday wear.",
                             style: TextStyle(
                               fontSize: 13,
-                              color: Colors.grey.shade600,
+                              color: primaryColor,
                               height: 1.5,
                             ),
                           ),
@@ -311,7 +311,7 @@ class _ProductDetailState extends State<ProductDetail> {
                                 "Estimated delivery: 3–5 business days",
                                 style: TextStyle(
                                   fontSize: 12,
-                                  color: Colors.grey.shade600,
+                                  color: primaryColor,
                                 ),
                               ),
                             ],

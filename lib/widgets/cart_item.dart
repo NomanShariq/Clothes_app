@@ -138,8 +138,8 @@ class CartPdt extends StatelessWidget {
                       ),
                       IconButton(
                         onPressed: () => cart.removeItem(productId),
-                        icon: Icon(Icons.delete_outline,
-                            size: 20, color: Colors.grey.shade500),
+                        icon: const Icon(Icons.delete_outline,
+                            size: 35, color: Colors.red),
                       ),
                     ],
                   ),

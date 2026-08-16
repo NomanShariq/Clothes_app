@@ -3,6 +3,7 @@ import 'package:clothing_app/pages/category_detail_page.dart';
 import 'package:clothing_app/pages/product_detail.dart' show ProductDetail;
 import 'package:clothing_app/pages/profile_screen.dart';
 import 'package:clothing_app/pages/sale_page.dart';
+import 'package:clothing_app/pages/wishlist_page.dart';
 import 'package:clothing_app/widgets/home/app_bottom_nav.dart';
 import 'package:clothing_app/widgets/home/category_icons_row.dart';
 import 'package:clothing_app/widgets/home/hero_banner.dart';
@@ -170,15 +171,21 @@ class _HomepageState extends State<Homepage> {
         currentIndex: _navIndex,
         onTap: (index) {
           setState(() => _navIndex = index);
-          if (index == 2) {
-            Navigator.pushNamed(context, "/cartscreen");
+          if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const WishlistPage()),
+            ).then((_) => setState(() => _navIndex = 0));
+          } else if (index == 2) {
+            Navigator.pushNamed(context, "/cartscreen")
+                .then((_) => setState(() => _navIndex = 0));
           } else if (index == 3) {
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => ProfileScreen(email: UserSession.email),
               ),
-            );
+            ).then((_) => setState(() => _navIndex = 0));
           }
         },
       ),

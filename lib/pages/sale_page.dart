@@ -15,20 +15,17 @@ class SalePage extends StatefulWidget {
 
 class _SalePageState extends State<SalePage> {
   String _searchQuery = "";
-  String _selectedGender = "All"; // All, Ladies, Gents, Kids
+  String _selectedGender = "All";
   PriceFilter _selectedPrice = PriceFilter.all;
 
   List<ProductCardData> get _filteredProducts {
     return widget.products.where((product) {
-      // Search filter
       final matchesSearch = _searchQuery.isEmpty ||
           product.title.toLowerCase().contains(_searchQuery.toLowerCase());
 
-      // Gender filter — matched via image path (ladies/gents/kids images)
       final matchesGender = _selectedGender == "All" ||
           product.image.toLowerCase().contains(_selectedGender.toLowerCase());
 
-      // Price filter
       bool matchesPrice;
       switch (_selectedPrice) {
         case PriceFilter.under5k:
@@ -52,21 +49,21 @@ class _SalePageState extends State<SalePage> {
   @override
   Widget build(BuildContext context) {
     final results = _filteredProducts;
+    final primaryColor = Theme.of(context).colorScheme.primary;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black),
-        title: const Text(
+        iconTheme: IconThemeData(color: primaryColor),
+        title: Text(
           "Sale",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
         ),
       ),
       body: Column(
         children: [
-          // Search bar
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: TextField(
@@ -75,7 +72,8 @@ class _SalePageState extends State<SalePage> {
                 hintText: "Search sale items...",
                 prefixIcon: const Icon(Icons.search),
                 filled: true,
-                fillColor: Colors.grey.shade100,
+                fillColor: Theme.of(context).inputDecorationTheme.fillColor ??
+                    Colors.grey.shade100,
                 contentPadding: const EdgeInsets.symmetric(vertical: 12),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
@@ -84,8 +82,6 @@ class _SalePageState extends State<SalePage> {
               ),
             ),
           ),
-
-          // Gender filter chips
           SizedBox(
             height: 44,
             child: ListView(
@@ -101,7 +97,7 @@ class _SalePageState extends State<SalePage> {
                     onSelected: (_) => setState(() => _selectedGender = gender),
                     selectedColor: Colors.black,
                     labelStyle: TextStyle(
-                      color: isSelected ? Colors.white : Colors.black,
+                      color: isSelected ? Colors.white : primaryColor,
                       fontWeight: FontWeight.w600,
                     ),
                     backgroundColor: Colors.grey.shade100,
@@ -111,27 +107,29 @@ class _SalePageState extends State<SalePage> {
             ),
           ),
           const SizedBox(height: 8),
-
-          // Price filter chips
           SizedBox(
             height: 44,
             child: ListView(
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 16),
               children: [
-                _priceChip("All Prices", PriceFilter.all),
-                _priceChip("Under Rs 5,000", PriceFilter.under5k),
-                _priceChip("Rs 5,000 - 10,000", PriceFilter.range5to10k),
-                _priceChip("Above Rs 10,000", PriceFilter.above10k),
+                _priceChip(context, "All Prices", PriceFilter.all),
+                _priceChip(context, "Under Rs 5,000", PriceFilter.under5k),
+                _priceChip(
+                    context, "Rs 5,000 - 10,000", PriceFilter.range5to10k),
+                _priceChip(context, "Above Rs 10,000", PriceFilter.above10k),
               ],
             ),
           ),
           const SizedBox(height: 12),
-
-          // Results
           Expanded(
             child: results.isEmpty
-                ? const Center(child: Text("No items match your filters"))
+                ? Center(
+                    child: Text(
+                      "No items match your filters",
+                      style: TextStyle(color: primaryColor),
+                    ),
+                  )
                 : GridView.builder(
                     padding: const EdgeInsets.all(16),
                     itemCount: results.length,
@@ -163,8 +161,9 @@ class _SalePageState extends State<SalePage> {
     );
   }
 
-  Widget _priceChip(String label, PriceFilter value) {
+  Widget _priceChip(BuildContext context, String label, PriceFilter value) {
     final isSelected = _selectedPrice == value;
+    final primaryColor = Theme.of(context).colorScheme.primary;
     return Padding(
       padding: const EdgeInsets.only(right: 8),
       child: ChoiceChip(
@@ -173,7 +172,7 @@ class _SalePageState extends State<SalePage> {
         onSelected: (_) => setState(() => _selectedPrice = value),
         selectedColor: Colors.black,
         labelStyle: TextStyle(
-          color: isSelected ? Colors.white : Colors.black,
+          color: isSelected ? Colors.white : primaryColor,
           fontWeight: FontWeight.w600,
         ),
         backgroundColor: Colors.grey.shade100,

@@ -1,5 +1,6 @@
 import 'package:clothing_app/models/cart.dart';
 import 'package:clothing_app/models/screen_arguements.dart';
+import 'package:clothing_app/models/wishlist.dart';
 import 'package:clothing_app/pages/home_page.dart';
 import 'package:clothing_app/pages/login_page.dart';
 import 'package:clothing_app/screens/cart_screen.dart';
@@ -20,13 +21,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider.value(
-          value: Product(),
-        ),
-        ChangeNotifierProvider.value(
-          value: Cart(),
-        ),
+        ChangeNotifierProvider.value(value: Product()),
+        ChangeNotifierProvider.value(value: Cart()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => Wishlist()), // ← ye naya add karo
       ],
       child: Consumer<ThemeProvider>(
         builder: (context, themeProvider, _) {

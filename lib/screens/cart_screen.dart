@@ -32,32 +32,35 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
     final items = cart.items;
+    final primaryColor = Theme.of(context).colorScheme.primary;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
         centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.black),
-        title: const Text(
+        iconTheme: IconThemeData(color: primaryColor),
+        title: Text(
           "My Cart",
           // "My Cart${items.isNotEmpty ? ' (${cart.itemCount})' : ''}",
           style: TextStyle(
-            color: Colors.black,
+            color: primaryColor,
             fontWeight: FontWeight.w600,
             fontSize: 18,
           ),
         ),
       ),
-      body: items.isEmpty ? _buildEmptyState(context) : _buildCartContent(cart),
+      body: items.isEmpty
+          ? _buildEmptyState(context)
+          : _buildCartContent(context, cart),
       bottomNavigationBar: items.isEmpty
           ? null
           : Container(
               height: 90,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).scaffoldBackgroundColor,
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.05),
@@ -82,10 +85,10 @@ class _CartScreenState extends State<CartScreen> {
                           ),
                           Text(
                             formatCurrency(cart.total),
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              color: primaryColor,
                             ),
                           ),
                         ],
@@ -120,6 +123,7 @@ class _CartScreenState extends State<CartScreen> {
   }
 
   Widget _buildEmptyState(BuildContext context) {
+    final primaryColor = Theme.of(context).colorScheme.primary;
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(32),
@@ -129,12 +133,12 @@ class _CartScreenState extends State<CartScreen> {
             Icon(Icons.shopping_bag_outlined,
                 size: 90, color: Colors.grey.shade300),
             const SizedBox(height: 24),
-            const Text(
+            Text(
               "Your Cart is Empty",
               style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
-                  color: Colors.black),
+                  color: primaryColor),
             ),
             const SizedBox(height: 8),
             Text(
@@ -167,9 +171,10 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 
-  Widget _buildCartContent(Cart cart) {
+  Widget _buildCartContent(BuildContext context, Cart cart) {
     final keys = cart.items.keys.toList();
     final values = cart.items.values.toList();
+    final primaryColor = Theme.of(context).colorScheme.primary;
 
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(20, 12, 20, 20),
@@ -180,20 +185,21 @@ class _CartScreenState extends State<CartScreen> {
             alignment: Alignment.centerRight,
             child: TextButton.icon(
               onPressed: () => Navigator.pop(context),
-              icon: const Icon(Icons.add, size: 16, color: Colors.black),
-              label: const Text(
+              icon: Icon(Icons.add, size: 16, color: primaryColor),
+              label: Text(
                 "Continue Shopping",
                 style:
-                    TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
+                    TextStyle(color: primaryColor, fontWeight: FontWeight.w600),
               ),
             ),
           ),
           for (int i = 0; i < keys.length; i++)
             CartPdt(productId: keys[i], item: values[i]),
           const SizedBox(height: 8),
-          const Text(
+          Text(
             "Have a promo code?",
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+            style: TextStyle(
+                fontSize: 14, fontWeight: FontWeight.w600, color: primaryColor),
           ),
           const SizedBox(height: 8),
           Row(
@@ -201,6 +207,7 @@ class _CartScreenState extends State<CartScreen> {
               Expanded(
                 child: TextField(
                   controller: _promoController,
+                  style: TextStyle(color: primaryColor),
                   decoration: InputDecoration(
                     hintText: "Enter promo code",
                     contentPadding: const EdgeInsets.symmetric(
@@ -217,14 +224,13 @@ class _CartScreenState extends State<CartScreen> {
                 height: 46,
                 child: OutlinedButton(
                   style: OutlinedButton.styleFrom(
-                    side: const BorderSide(color: Colors.black),
+                    side: BorderSide(color: primaryColor),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                   onPressed: _applyPromo,
-                  child: const Text("Apply",
-                      style: TextStyle(color: Colors.black)),
+                  child: Text("Apply", style: TextStyle(color: primaryColor)),
                 ),
               ),
             ],
@@ -240,22 +246,28 @@ class _CartScreenState extends State<CartScreen> {
             ),
           ],
           const SizedBox(height: 24),
-          const Text(
+          Text(
             "ORDER SUMMARY",
             style: TextStyle(
-                fontSize: 13, fontWeight: FontWeight.bold, letterSpacing: 0.5),
+                fontSize: 13,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 0.5,
+                color: primaryColor),
           ),
           const SizedBox(height: 12),
-          _summaryRow("Subtotal", formatCurrency(cart.subtotal)),
+          _summaryRow(context, "Subtotal", formatCurrency(cart.subtotal)),
           if (cart.totalDiscount > 0)
-            _summaryRow("Discount", "- ${formatCurrency(cart.totalDiscount)}",
+            _summaryRow(
+                context, "Discount", "- ${formatCurrency(cart.totalDiscount)}",
                 valueColor: Colors.green),
           _summaryRow(
+            context,
             "Delivery",
             cart.deliveryFee == 0 ? "Free" : formatCurrency(cart.deliveryFee),
           ),
           const Divider(height: 24),
-          _summaryRow("Total", formatCurrency(cart.total), isTotal: true),
+          _summaryRow(context, "Total", formatCurrency(cart.total),
+              isTotal: true),
           const SizedBox(height: 12),
           if (cart.deliveryFee > 0)
             Text(
@@ -279,8 +291,9 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 
-  Widget _summaryRow(String label, String value,
+  Widget _summaryRow(BuildContext context, String label, String value,
       {bool isTotal = false, Color? valueColor}) {
+    final primaryColor = Theme.of(context).colorScheme.primary;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
@@ -291,7 +304,7 @@ class _CartScreenState extends State<CartScreen> {
             style: TextStyle(
               fontSize: isTotal ? 15 : 13,
               fontWeight: isTotal ? FontWeight.bold : FontWeight.normal,
-              color: isTotal ? Colors.black : Colors.grey.shade600,
+              color: isTotal ? primaryColor : Colors.grey.shade600,
             ),
           ),
           Text(
@@ -299,7 +312,8 @@ class _CartScreenState extends State<CartScreen> {
             style: TextStyle(
               fontSize: isTotal ? 17 : 13,
               fontWeight: isTotal ? FontWeight.bold : FontWeight.w600,
-              color: valueColor ?? (isTotal ? Colors.black : Colors.black87),
+              color:
+                  valueColor ?? (isTotal ? primaryColor : Colors.grey.shade800),
             ),
           ),
         ],

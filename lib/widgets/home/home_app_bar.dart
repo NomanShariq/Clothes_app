@@ -38,12 +38,13 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
         IconButton(
           icon: Icon(
-            themeProvider.isDarkMode
+            themeProvider.isDarkMode(context)
                 ? Icons.dark_mode_outlined
                 : Icons.light_mode_outlined,
             size: 24,
           ),
-          onPressed: () => themeProvider.toggleTheme(!themeProvider.isDarkMode),
+          onPressed: () =>
+              themeProvider.toggleTheme(!themeProvider.isDarkMode(context)),
         ),
         const SizedBox(width: 8),
       ],
