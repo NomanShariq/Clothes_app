@@ -1,3 +1,4 @@
+import 'package:clothing_app/pages/product_detail.dart';
 import 'package:clothing_app/widgets/home/product_card.dart';
 import 'package:flutter/material.dart';
 
@@ -14,15 +15,16 @@ class CategoryDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black),
+        iconTheme: IconThemeData(color: Theme.of(context).colorScheme.primary),
         title: Text(
           title,
-          style:
-              const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              color: Theme.of(context).colorScheme.primary,
+              fontWeight: FontWeight.bold),
         ),
       ),
       body: GridView.builder(
@@ -37,7 +39,14 @@ class CategoryDetailPage extends StatelessWidget {
         itemBuilder: (context, index) {
           return ProductCard(
             product: products[index],
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProductDetail(product: products[index]),
+                ),
+              );
+            },
           );
         },
       ),

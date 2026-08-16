@@ -29,20 +29,16 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: SizedBox(
-        width: 155,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Stack(
+              fit: StackFit.expand,
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(14),
-                  child: AspectRatio(
-                    aspectRatio: 0.95,
-                    child: Image.asset(product.image, fit: BoxFit.cover),
-                  ),
+                  child: Image.asset(product.image, fit: BoxFit.cover),
                 ),
                 if (product.isOnSale)
                   Positioned(
@@ -68,57 +64,60 @@ class ProductCard extends StatelessWidget {
                   ),
               ],
             ),
-            const SizedBox(height: 6),
-            Text(
-              product.title,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w600,
-                color: Colors.black87,
+          ),
+          const SizedBox(height: 6),
+          Text(
+            product.title,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+          ),
+          const SizedBox(height: 2),
+          Row(
+            children: [
+              const Icon(Icons.star, color: Colors.amber, size: 13),
+              const SizedBox(width: 3),
+              Text(
+                product.rating.toStringAsFixed(1),
+                style: TextStyle(
+                    fontSize: 11,
+                    color: Colors.grey.shade600,
+                    fontWeight: FontWeight.w800),
               ),
-            ),
-            const SizedBox(height: 2),
-            Row(
-              children: [
-                const Icon(Icons.star, color: Colors.amber, size: 13),
-                const SizedBox(width: 3),
-                Text(
-                  product.rating.toStringAsFixed(1),
-                  style: TextStyle(fontSize: 11, color: Colors.grey.shade600),
+            ],
+          ),
+          const SizedBox(height: 2),
+          Row(
+            children: [
+              Text(
+                "Rs ${product.price.toStringAsFixed(0)}",
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
-              ],
-            ),
-            const SizedBox(height: 2),
-            Row(
-              children: [
-                Text(
-                  "Rs ${product.price.toStringAsFixed(0)}",
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-                if (product.isOnSale) ...[
-                  const SizedBox(width: 6),
-                  Flexible(
-                    child: Text(
-                      "Rs ${product.originalPrice!.toStringAsFixed(0)}",
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 11,
-                        color: Colors.grey.shade500,
-                        decoration: TextDecoration.lineThrough,
-                      ),
+              ),
+              if (product.isOnSale) ...[
+                const SizedBox(width: 6),
+                Flexible(
+                  child: Text(
+                    "Rs ${product.originalPrice!.toStringAsFixed(0)}",
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: Colors.grey.shade500,
+                      decoration: TextDecoration.lineThrough,
                     ),
                   ),
-                ],
+                ),
               ],
-            ),
-          ],
-        ),
+            ],
+          ),
+        ],
       ),
     );
   }

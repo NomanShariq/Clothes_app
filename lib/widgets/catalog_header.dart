@@ -9,10 +9,10 @@ class CatalogHeader extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.white,
-        iconTheme: const IconThemeData(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        iconTheme: IconThemeData(
           size: 30,
-          color: Colors.black,
+          color: Theme.of(context).colorScheme.primary,
         ),
         title: Image.asset(
           "logo.png",

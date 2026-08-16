@@ -25,8 +25,8 @@ class AuthSwitchText extends StatelessWidget {
           onTap: onTap,
           child: Text(
             actionText,
-            style: const TextStyle(
-              color: Colors.black,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.primary,
               fontWeight: FontWeight.bold,
             ),
           ),

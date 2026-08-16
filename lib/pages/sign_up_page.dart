@@ -1,6 +1,5 @@
 import 'package:clothing_app/pages/home_page.dart';
 import 'package:clothing_app/pages/login_page.dart';
-import 'package:clothing_app/widgets/app_drawer.dart';
 import 'package:clothing_app/widgets/app_logo_header.dart';
 import 'package:clothing_app/widgets/auth_switch_text.dart';
 import 'package:clothing_app/widgets/custom_text_field.dart';
@@ -38,7 +37,6 @@ class _State extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFAFAFA),
-      drawer: const AppDrawer(),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 28.0),

@@ -1,9 +1,7 @@
 import 'package:clothing_app/models/cart.dart';
 import 'package:clothing_app/models/screen_arguements.dart';
-import 'package:clothing_app/pages/all_products.dart';
 import 'package:clothing_app/pages/home_page.dart';
 import 'package:clothing_app/pages/login_page.dart';
-import 'package:clothing_app/pages/Category_page.dart';
 import 'package:clothing_app/screens/cart_screen.dart';
 import 'package:clothing_app/screens/pdct_detail_screen.dart';
 import 'package:clothing_app/theme/app_theme.dart';
@@ -35,14 +33,20 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
               debugShowCheckedModeBanner: false,
               theme: AppTheme.lightTheme,
+              darkTheme: AppTheme.darkTheme,
+              themeMode: themeProvider.themeMode,
               initialRoute: "/home",
+              builder: (context, child) {
+                return MediaQuery(
+                  data: MediaQuery.of(context)
+                      .copyWith(textScaler: TextScaler.linear(1.0)),
+                  child: child!,
+                );
+              },
               routes: {
                 "/": (context) => const LoginPage(),
                 "/home": (context) => const Homepage(),
-                "/category": (context) => const CategoryPage(),
                 "/detail": (context) => const DetailPage(),
-                // "/cart":(context) => Cartscreen(),
-                "/allproducts": (context) => const Allproducts(),
                 "/cartscreen": (context) => const CartScreen(),
               });
         },

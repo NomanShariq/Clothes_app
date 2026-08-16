@@ -23,10 +23,10 @@ class PdtItem extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: ElevatedButton(
           style: OutlinedButton.styleFrom(
-            backgroundColor: Colors.white,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
-                side: const BorderSide(color: Colors.black)),
+                side: BorderSide(color: Theme.of(context).colorScheme.primary)),
           ),
           onPressed: () {
             Navigator.of(context).pushNamed("/detail", arguments: product.id);

@@ -1,3 +1,4 @@
+import 'package:clothing_app/pages/product_detail.dart';
 import 'package:clothing_app/widgets/home/product_card.dart';
 import 'package:flutter/material.dart';
 
@@ -139,12 +140,20 @@ class _SalePageState extends State<SalePage> {
                       crossAxisCount: 2,
                       mainAxisSpacing: 16,
                       crossAxisSpacing: 16,
-                      childAspectRatio: 0.7,
+                      childAspectRatio: 0.62,
                     ),
                     itemBuilder: (context, index) {
                       return ProductCard(
                         product: results[index],
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  ProductDetail(product: results[index]),
+                            ),
+                          );
+                        },
                       );
                     },
                   ),

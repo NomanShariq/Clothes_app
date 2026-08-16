@@ -1,5 +1,6 @@
 import 'package:clothing_app/models/user_session.dart';
 import 'package:clothing_app/pages/category_detail_page.dart';
+import 'package:clothing_app/pages/product_detail.dart' show ProductDetail;
 import 'package:clothing_app/pages/profile_screen.dart';
 import 'package:clothing_app/pages/sale_page.dart';
 import 'package:clothing_app/widgets/home/app_bottom_nav.dart';
@@ -136,9 +137,20 @@ class _HomepageState extends State<Homepage> {
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.only(right: 12),
-                child: ProductCard(
-                  product: products[index],
-                  onTap: () {},
+                child: SizedBox(
+                  width: 155,
+                  child: ProductCard(
+                    product: products[index],
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              ProductDetail(product: products[index]),
+                        ),
+                      );
+                    },
+                  ),
                 ),
               );
             },
@@ -152,7 +164,7 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: HomeAppBar(onSearchTap: () {}),
       bottomNavigationBar: AppBottomNav(
         currentIndex: _navIndex,

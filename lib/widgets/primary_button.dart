@@ -15,7 +15,7 @@ class PrimaryButton extends StatelessWidget {
     return SizedBox(
       height: 54,
       child: ElevatedButton(
-        onPressed: onPressed, // style AppTheme se automatic aa jayega
+        onPressed: onPressed,
         child: Text(text),
       ),
     );

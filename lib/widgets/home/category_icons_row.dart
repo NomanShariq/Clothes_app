@@ -43,10 +43,10 @@ class CategoryIconsRow extends StatelessWidget {
                     const SizedBox(height: 10),
                     Text(
                       category.label,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
-                        color: Colors.black87,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                   ],

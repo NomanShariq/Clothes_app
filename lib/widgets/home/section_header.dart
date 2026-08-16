@@ -16,11 +16,11 @@ class SectionHeader extends StatelessWidget {
         children: [
           Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 17,
               fontWeight: FontWeight.bold,
               letterSpacing: 0.3,
-              color: Colors.black,
+              color: Theme.of(context).colorScheme.primary,
             ),
           ),
           if (onViewAll != null)

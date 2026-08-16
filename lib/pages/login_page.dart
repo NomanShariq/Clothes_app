@@ -1,7 +1,6 @@
 import 'package:clothing_app/models/user_session.dart';
 import 'package:clothing_app/pages/home_page.dart';
 import 'package:clothing_app/pages/sign_up_page.dart';
-import 'package:clothing_app/widgets/app_drawer.dart';
 import 'package:clothing_app/widgets/app_logo_header.dart';
 import 'package:clothing_app/widgets/auth_switch_text.dart';
 import 'package:clothing_app/widgets/custom_text_field.dart'
@@ -42,8 +41,7 @@ class _State extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFAFAFA),
-      drawer: const AppDrawer(),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
@@ -84,7 +82,8 @@ class _State extends State<LoginPage> {
                               child: Text(
                                 "Forgot Password?",
                                 style: TextStyle(
-                                  color: Colors.grey.shade800,
+                                  color:
+                                      Theme.of(context).colorScheme.onSurface,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 13,
                                 ),

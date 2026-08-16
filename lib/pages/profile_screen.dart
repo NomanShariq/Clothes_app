@@ -1,5 +1,3 @@
-import 'package:clothing_app/theme/app_colors.dart';
-import 'package:clothing_app/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -17,13 +15,18 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final primaryColor = Theme.of(context).colorScheme.primary;
+
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: AppColors.background,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.primary),
-        title: const Text("My Profile", style: AppTextStyles.label),
+        iconTheme: IconThemeData(color: primaryColor),
+        title: Text(
+          "My Profile",
+          style: TextStyle(fontWeight: FontWeight.w600, color: primaryColor),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
@@ -34,39 +37,44 @@ class ProfileScreen extends StatelessWidget {
             Center(
               child: CircleAvatar(
                 radius: 50,
-                backgroundColor: AppColors.inputFill,
+                backgroundColor: Theme.of(context).cardColor,
                 child: Text(
                   _derivedName[0],
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 36,
                     fontWeight: FontWeight.bold,
-                    color: AppColors.labelText,
+                    color: primaryColor,
                   ),
                 ),
               ),
             ),
             const SizedBox(height: 32),
-            _buildInfoTile(label: "Name", value: _derivedName),
+            _buildInfoTile(
+                context: context, label: "Name", value: _derivedName),
             const SizedBox(height: 16),
-            _buildInfoTile(label: "Email", value: email),
+            _buildInfoTile(context: context, label: "Email", value: email),
             const SizedBox(height: 40),
             SizedBox(
               width: double.infinity,
               height: 50,
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
-                  side: const BorderSide(color: AppColors.primary),
+                  side: BorderSide(color: primaryColor),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
                 onPressed: () {
-                  Navigator.popUntil(context, (route) => route.isFirst);
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    "/",
+                    (route) => false,
+                  );
                 },
-                child: const Text(
+                child: Text(
                   "Logout",
                   style: TextStyle(
-                    color: AppColors.primary,
+                    color: primaryColor,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -78,23 +86,29 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoTile({required String label, required String value}) {
+  Widget _buildInfoTile({
+    required BuildContext context,
+    required String label,
+    required String value,
+  }) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: AppColors.border),
+        border: Border.all(
+          color: Theme.of(context).dividerTheme.color ?? Colors.grey,
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             label,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 12,
-              color: AppColors.bodyText,
+              color: Colors.grey.shade600,
               fontWeight: FontWeight.w600,
             ),
           ),

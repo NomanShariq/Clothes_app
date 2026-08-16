@@ -22,13 +22,13 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       titleSpacing: 20,
-      title: const Text(
+      title: Text(
         "BONANZA SATRANGI",
         style: TextStyle(
           fontSize: 17,
           fontWeight: FontWeight.bold,
           letterSpacing: 1.0,
-          color: Colors.black,
+          color: Theme.of(context).colorScheme.primary,
         ),
       ),
       actions: [
@@ -43,8 +43,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                 : Icons.light_mode_outlined,
             size: 24,
           ),
-          onPressed: () =>
-              themeProvider.toggleTheme(!themeProvider.isDarkMode),
+          onPressed: () => themeProvider.toggleTheme(!themeProvider.isDarkMode),
         ),
         const SizedBox(width: 8),
       ],

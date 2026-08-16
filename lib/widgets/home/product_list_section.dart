@@ -41,7 +41,9 @@ class ProductListSection extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 product.title,
-                style: const TextStyle(color: Colors.black),
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
                 textAlign: TextAlign.center,
               ),
             ],

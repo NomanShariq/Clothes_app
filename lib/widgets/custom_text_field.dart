@@ -36,8 +36,6 @@ class CustomTextField extends StatelessWidget {
           obscureText: obscure,
           keyboardType: keyboardType,
           style: const TextStyle(fontSize: 15),
-          // decoration ka filled/fillColor/border sab
-          // AppTheme.lightTheme -> inputDecorationTheme se automatically aa jayega
           decoration: InputDecoration(
             hintText: hint,
             prefixIcon: Icon(icon, color: AppColors.bodyText, size: 20),
