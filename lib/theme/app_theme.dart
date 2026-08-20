@@ -14,6 +14,7 @@ class AppTheme {
         seedColor: AppColors.primary,
         brightness: Brightness.light,
         primary: AppColors.primary,
+        secondary: AppColors.primary,
         error: AppColors.error,
       ),
       appBarTheme: const AppBarTheme(
@@ -66,63 +67,75 @@ class AppTheme {
   }
 
   static ThemeData get darkTheme {
-    const darkBg = Color(0xFF121212);
-    const darkSurface = Color(0xFF1E1E1E);
-
     return ThemeData(
       brightness: Brightness.dark,
-      scaffoldBackgroundColor: darkBg,
-      primaryColor: Colors.white,
+      scaffoldBackgroundColor: AppColors.darkBackground,
+      primaryColor: AppColors.darkWhiteText,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: Colors.white,
+        seedColor: AppColors.gold,
         brightness: Brightness.dark,
-        primary: Colors.white,
+        primary: AppColors.darkWhiteText,
+        secondary: AppColors.gold,
         error: AppColors.error,
+        onSurface: AppColors.darkGrayText,
       ),
       appBarTheme: const AppBarTheme(
-        backgroundColor: darkBg,
+        backgroundColor: AppColors.darkBackground,
         elevation: 0,
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: AppColors.darkWhiteText),
         titleTextStyle: TextStyle(
-          color: Colors.white,
-          fontSize: 18,
-          fontWeight: FontWeight.w600,
+          color: AppColors.darkWhiteText,
+          fontSize: 17,
+          fontWeight: FontWeight.w500,
+          letterSpacing: 0.3,
         ),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.white,
+          backgroundColor: AppColors.gold,
           foregroundColor: Colors.black,
           elevation: 0,
-          minimumSize: const Size.fromHeight(54),
+          minimumSize: const Size.fromHeight(52),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(14),
           ),
         ),
       ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          side: const BorderSide(color: AppColors.gold),
+          foregroundColor: AppColors.gold,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+      ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: darkSurface,
-        hintStyle: const TextStyle(color: Colors.grey),
+        fillColor: AppColors.darkSurface,
+        hintStyle: const TextStyle(color: AppColors.darkGrayText, fontSize: 13),
         contentPadding:
             const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14),
-          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: AppColors.darkBorder),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14),
-          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: AppColors.darkBorder),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14),
-          borderSide: const BorderSide(color: Colors.white, width: 1.5),
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: AppColors.gold, width: 1.5),
         ),
       ),
-      cardColor: darkSurface,
+      cardColor: AppColors.darkSurface,
       dividerTheme: const DividerThemeData(
-        color: Colors.grey,
-        thickness: 0.5,
+        color: AppColors.darkBorder,
+        thickness: 1,
+      ),
+      textTheme: const TextTheme(
+        bodyMedium: TextStyle(color: AppColors.darkGrayText),
       ),
     );
   }

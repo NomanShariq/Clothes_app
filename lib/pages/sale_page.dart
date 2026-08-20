@@ -100,7 +100,7 @@ class _SalePageState extends State<SalePage> {
                       color: isSelected ? Colors.white : primaryColor,
                       fontWeight: FontWeight.w600,
                     ),
-                    backgroundColor: Colors.grey.shade100,
+                    backgroundColor: Theme.of(context).cardColor,
                   ),
                 );
               }).toList(),
@@ -175,7 +175,7 @@ class _SalePageState extends State<SalePage> {
           color: isSelected ? Colors.white : primaryColor,
           fontWeight: FontWeight.w600,
         ),
-        backgroundColor: Colors.grey.shade100,
+        backgroundColor: Theme.of(context).cardColor,
       ),
     );
   }

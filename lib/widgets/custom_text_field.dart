@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:clothing_app/theme/app_colors.dart';
-import 'package:clothing_app/theme/app_text_styles.dart';
 
 class CustomTextField extends StatelessWidget {
   final String label;
@@ -26,19 +24,28 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final primaryColor = theme.colorScheme.primary;
+    final grayText = theme.textTheme.bodyMedium?.color ?? Colors.grey;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(label, style: AppTextStyles.label),
+        Text(
+          label,
+          style: TextStyle(
+              fontSize: 13, fontWeight: FontWeight.w600, color: primaryColor),
+        ),
         const SizedBox(height: 8),
         TextFormField(
           controller: controller,
           obscureText: obscure,
           keyboardType: keyboardType,
-          style: const TextStyle(fontSize: 15),
+          style: TextStyle(fontSize: 15, color: primaryColor),
           decoration: InputDecoration(
             hintText: hint,
-            prefixIcon: Icon(icon, color: AppColors.bodyText, size: 20),
+            hintStyle: TextStyle(color: grayText, fontSize: 14),
+            prefixIcon: Icon(icon, color: grayText, size: 20),
             suffixIcon: suffixIcon,
           ),
           validator: validator ??
@@ -77,6 +84,9 @@ class _PasswordFieldState extends State<PasswordField> {
 
   @override
   Widget build(BuildContext context) {
+    final grayText =
+        Theme.of(context).textTheme.bodyMedium?.color ?? Colors.grey;
+
     return CustomTextField(
       label: widget.label,
       hint: widget.hint,
@@ -89,7 +99,7 @@ class _PasswordFieldState extends State<PasswordField> {
           obscurePassword
               ? Icons.visibility_off_outlined
               : Icons.visibility_outlined,
-          color: AppColors.bodyText,
+          color: grayText,
           size: 20,
         ),
         onPressed: () {

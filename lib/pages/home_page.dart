@@ -1,8 +1,10 @@
 import 'package:clothing_app/models/user_session.dart';
 import 'package:clothing_app/pages/category_detail_page.dart';
+import 'package:clothing_app/pages/new_collection_page.dart';
 import 'package:clothing_app/pages/product_detail.dart' show ProductDetail;
 import 'package:clothing_app/pages/profile_screen.dart';
 import 'package:clothing_app/pages/sale_page.dart';
+import 'package:clothing_app/pages/search_page.dart';
 import 'package:clothing_app/pages/wishlist_page.dart';
 import 'package:clothing_app/widgets/home/app_bottom_nav.dart';
 import 'package:clothing_app/widgets/home/category_icons_row.dart';
@@ -10,6 +12,7 @@ import 'package:clothing_app/widgets/home/hero_banner.dart';
 import 'package:clothing_app/widgets/home/home_app_bar.dart';
 import 'package:clothing_app/widgets/home/product_card.dart';
 import 'package:clothing_app/widgets/home/section_header.dart';
+import 'package:clothing_app/widgets/monarq_loader.dart';
 import 'package:flutter/material.dart';
 
 const String _ladiesImage = "images/ladies.jpg";
@@ -25,6 +28,15 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   int _navIndex = 0;
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(milliseconds: 1200), () {
+      if (mounted) setState(() => _isLoading = false);
+    });
+  }
 
   static const List<CategoryItem> _categories = [
     CategoryItem(label: "Ladies", imagePath: _ladiesImage),
@@ -166,7 +178,19 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      appBar: HomeAppBar(onSearchTap: () {}),
+      appBar: HomeAppBar(onSearchTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => const SearchPage(
+                    allProducts: [
+                      ..._ladiesProducts,
+                      ..._gentsProducts,
+                      ..._kidsProducts,
+                    ],
+                  )),
+        );
+      }),
       bottomNavigationBar: AppBottomNav(
         currentIndex: _navIndex,
         onTap: (index) {
@@ -189,35 +213,53 @@ class _HomepageState extends State<Homepage> {
           }
         },
       ),
-      body: ListView(
-        children: [
-          const SizedBox(height: 16),
-          CategoryIconsRow(
-            categories: _categories,
-            onTap: (category) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => CategoryDetailPage(
-                    title: category.label,
-                    products: _productsForLabel(category.label),
+      body: MonarqLoadingSwitcher(
+        isLoading: _isLoading,
+        message: "Curating your style...",
+        child: ListView(
+          children: [
+            const SizedBox(height: 16),
+            CategoryIconsRow(
+              categories: _categories,
+              onTap: (category) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CategoryDetailPage(
+                      title: category.label,
+                      products: _productsForLabel(category.label),
+                    ),
                   ),
-                ),
-              );
-            },
-          ),
-          const SizedBox(height: 24),
-          HeroBanner(
-            imagePath: _ladiesImage,
-            onShopNow: () {},
-          ),
-          const SizedBox(height: 8),
-          _buildProductSection(
-              title: "HOT DEALS", products: _saleProducts, isSale: true),
-          _buildProductSection(title: "LADIES WEAR", products: _ladiesProducts),
-          _buildProductSection(title: "GENTS WEAR", products: _gentsProducts),
-          _buildProductSection(title: "KIDS WEAR", products: _kidsProducts),
-        ],
+                );
+              },
+            ),
+            const SizedBox(height: 24),
+            HeroBanner(
+              imagePath: _ladiesImage,
+              onShopNow: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const NewCollectionPage(
+                      allProducts: [
+                        ..._ladiesProducts,
+                        ..._gentsProducts,
+                        ..._kidsProducts,
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 8),
+            _buildProductSection(
+                title: "HOT DEALS", products: _saleProducts, isSale: true),
+            _buildProductSection(
+                title: "LADIES WEAR", products: _ladiesProducts),
+            _buildProductSection(title: "GENTS WEAR", products: _gentsProducts),
+            _buildProductSection(title: "KIDS WEAR", products: _kidsProducts),
+          ],
+        ),
       ),
     );
   }

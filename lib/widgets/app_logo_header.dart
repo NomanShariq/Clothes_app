@@ -18,7 +18,15 @@ class AppLogoHeader extends StatelessWidget {
       children: [
         FadeSlideIn(
           child: Center(
-            child: Image.asset("images/logo.png", height: 90),
+            child: Text(
+              "BONANZA SATRANGI",
+              style: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.0,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            ),
           ),
         ),
         const SizedBox(height: 48),

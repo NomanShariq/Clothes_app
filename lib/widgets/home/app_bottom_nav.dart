@@ -15,7 +15,9 @@ class AppBottomNav extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).scaffoldBackgroundColor,
-        border: Border(top: BorderSide(color: Colors.grey.shade200)),
+        border: Border(
+            top: BorderSide(
+                color: Theme.of(context).colorScheme.onSecondary, width: 2.5)),
       ),
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: SafeArea(

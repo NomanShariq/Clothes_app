@@ -208,12 +208,16 @@ class _ProductDetailState extends State<ProductDetail> {
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
                                       color: isSelected
-                                          ? Colors.black
+                                          ? Theme.of(context)
+                                              .colorScheme
+                                              .secondary
                                           : Colors.white,
                                       borderRadius: BorderRadius.circular(10),
                                       border: Border.all(
                                         color: isSelected
-                                            ? Colors.black
+                                            ? Theme.of(context)
+                                                .colorScheme
+                                                .secondary
                                             : Colors.grey.shade300,
                                       ),
                                     ),
@@ -222,7 +226,9 @@ class _ProductDetailState extends State<ProductDetail> {
                                       style: TextStyle(
                                         fontWeight: FontWeight.w600,
                                         color: isSelected
-                                            ? Colors.white
+                                            ? Theme.of(context)
+                                                .colorScheme
+                                                .onSecondary
                                             : Colors.black87,
                                       ),
                                     ),
@@ -348,7 +354,7 @@ class _ProductDetailState extends State<ProductDetail> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: _selectedSize == null
                     ? Colors.grey.shade700
-                    : Theme.of(context).colorScheme.primary,
+                    : Theme.of(context).colorScheme.secondary,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -377,7 +383,7 @@ class _ProductDetailState extends State<ProductDetail> {
                 style: TextStyle(
                   color: _selectedSize == null
                       ? Colors.white
-                      : Theme.of(context).colorScheme.onPrimary,
+                      : Theme.of(context).colorScheme.onSecondary,
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
                   letterSpacing: 0.5,

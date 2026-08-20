@@ -1,4 +1,5 @@
 import 'package:clothing_app/models/cart.dart';
+import 'package:clothing_app/pages/checkout_page.dart';
 import 'package:clothing_app/utils/currency.dart';
 import 'package:clothing_app/widgets/cart_item.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +58,6 @@ class _CartScreenState extends State<CartScreen> {
       bottomNavigationBar: items.isEmpty
           ? null
           : Container(
-              height: 90,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               decoration: BoxDecoration(
                 color: Theme.of(context).scaffoldBackgroundColor,
@@ -99,12 +99,19 @@ class _CartScreenState extends State<CartScreen> {
                       height: 50,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
+                          backgroundColor:
+                              Theme.of(context).colorScheme.secondary,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const CheckoutPage()),
+                          );
+                        },
                         child: const Text(
                           "Checkout",
                           style: TextStyle(
@@ -151,7 +158,7 @@ class _CartScreenState extends State<CartScreen> {
               height: 48,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
+                  backgroundColor: Theme.of(context).colorScheme.secondary,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
