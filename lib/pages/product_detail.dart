@@ -17,7 +17,7 @@ class ProductDetail extends StatefulWidget {
 class _ProductDetailState extends State<ProductDetail> {
   int _quantity = 1;
   String? _selectedSize;
-  bool _isWishlisted = false;
+  final bool _isWishlisted = false;
 
   static const List<String> _sizes = ["XS", "S", "M", "L", "XL"];
 
@@ -341,7 +341,7 @@ class _ProductDetailState extends State<ProductDetail> {
             color: Theme.of(context).cardColor,
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.05),
+                color: Colors.black.withValues(alpha: 0.05),
                 blurRadius: 8,
                 offset: const Offset(0, -2),
               ),

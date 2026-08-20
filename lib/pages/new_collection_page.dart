@@ -83,8 +83,8 @@ class _NewCollectionPageState extends State<NewCollectionPage> {
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                   colors: [
-                    Colors.black.withOpacity(0.65),
-                    Colors.black.withOpacity(0.1)
+                    Colors.black.withValues(alpha: 0.65),
+                    Colors.black.withValues(alpha: 0.1)
                   ],
                 ),
               ),
@@ -132,7 +132,7 @@ class _NewCollectionPageState extends State<NewCollectionPage> {
                       border: Border.all(
                           color: isSelected ? goldColor : borderColor),
                       color: isSelected
-                          ? goldColor.withOpacity(0.12)
+                          ? goldColor.withValues(alpha: 0.12)
                           : Colors.transparent,
                     ),
                     child: Text(
@@ -250,7 +250,7 @@ class _NewCollectionPageState extends State<NewCollectionPage> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(Icons.inventory_2_outlined,
-                size: 70, color: goldColor.withOpacity(0.5)),
+                size: 70, color: goldColor.withValues(alpha: 0.5)),
             const SizedBox(height: 20),
             Text("No products available",
                 style: TextStyle(

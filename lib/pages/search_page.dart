@@ -142,7 +142,6 @@ class _SearchPageState extends State<SearchPage> {
   Widget _buildInitialState(BuildContext context) {
     final theme = Theme.of(context);
     final primaryColor = theme.colorScheme.primary;
-    final goldColor = theme.colorScheme.secondary;
     final grayText = theme.textTheme.bodyMedium?.color ?? Colors.grey;
     final borderColor = theme.dividerTheme.color ?? Colors.grey;
 
@@ -243,7 +242,6 @@ class _SearchPageState extends State<SearchPage> {
     final theme = Theme.of(context);
     final primaryColor = theme.colorScheme.primary;
     final grayText = theme.textTheme.bodyMedium?.color ?? Colors.grey;
-    final borderColor = theme.dividerTheme.color ?? Colors.grey;
     final results = _results;
 
     return Column(
@@ -336,7 +334,8 @@ class _SearchPageState extends State<SearchPage> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.search_off, size: 70, color: goldColor.withOpacity(0.5)),
+            Icon(Icons.search_off,
+                size: 70, color: goldColor.withValues(alpha: 0.5)),
             const SizedBox(height: 20),
             Text("No products found",
                 style: TextStyle(

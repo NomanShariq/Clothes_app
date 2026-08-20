@@ -221,7 +221,7 @@ class _EmblemPainter extends CustomPainter {
     // Tick dots — fade in once ring is basically complete
     if (ringT > 0.85) {
       final dotOpacity = ((ringT - 0.85) / 0.15).clamp(0.0, 1.0);
-      final dp = Paint()..color = color.withOpacity(dotOpacity);
+      final dp = Paint()..color = color.withValues(alpha: dotOpacity);
       for (final angle in [0.0, 90.0, 180.0, 270.0]) {
         final rad = angle * math.pi / 180;
         final p = Offset(cx + r * math.sin(rad), cy - r * math.cos(rad));

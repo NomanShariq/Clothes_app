@@ -19,10 +19,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final primaryColor = theme.colorScheme.primary;
-    final goldColor = theme.colorScheme.secondary;
     final surfaceColor = theme.cardColor;
-    final borderColor = theme.dividerTheme.color ?? Colors.grey;
-    final grayText = theme.textTheme.bodyMedium?.color ?? Colors.grey;
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,

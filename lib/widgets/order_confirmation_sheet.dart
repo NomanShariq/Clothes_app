@@ -138,7 +138,7 @@ class _OrderConfirmationSheetState extends State<OrderConfirmationSheet>
                 width: 40,
                 height: 4,
                 decoration: BoxDecoration(
-                  color: grayText.withOpacity(0.3),
+                  color: grayText.withValues(alpha: 0.3),
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
@@ -415,20 +415,22 @@ class _PackageIllustration extends StatelessWidget {
               height: 76,
               decoration: BoxDecoration(
                 border: Border.all(
-                    color: primaryColor.withOpacity(0.85), width: 1.6),
+                    color: primaryColor.withValues(alpha: 0.85), width: 1.6),
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
             // box seam (vertical)
             Container(
-                width: 1.4, height: 76, color: primaryColor.withOpacity(0.4)),
+                width: 1.4,
+                height: 76,
+                color: primaryColor.withValues(alpha: 0.4)),
             // box seam (horizontal fold line near top)
             Positioned(
               top: 44,
               child: Container(
                   width: 92,
                   height: 1.2,
-                  color: primaryColor.withOpacity(0.25)),
+                  color: primaryColor.withValues(alpha: 0.25)),
             ),
             if (showCheck)
               Positioned(
@@ -501,7 +503,7 @@ class _TruckIllustration extends StatelessWidget {
             bottom: 34,
             left: 16,
             right: 16,
-            child: Container(height: 1, color: grayText.withOpacity(0.3)),
+            child: Container(height: 1, color: grayText.withValues(alpha: 0.3)),
           ),
           AnimatedBuilder(
             animation: controller,

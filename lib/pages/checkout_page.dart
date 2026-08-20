@@ -162,9 +162,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       context,
                       orderNumber: "MN-10245",
                       deliveryEstimate: "3–5 business days",
-                      onTrackOrder: () {
-                        // TODO: Navigate to My Orders screen
-                      },
+                      onTrackOrder: () {},
                       onContinueShopping: () {
                         Navigator.popUntil(context, (route) => route.isFirst);
                       },
