@@ -15,6 +15,7 @@ import 'package:clothing_app/widgets/home/product_card.dart';
 import 'package:clothing_app/widgets/home/section_header.dart';
 import 'package:clothing_app/widgets/monarq_loader.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 const String _ladiesImage = "images/ladies.jpg";
 const String _gentsImage = "images/gents.jpg";
@@ -48,8 +49,7 @@ class _HomepageState extends State<Homepage> {
   Future<void> _loadProducts() async {
     try {
       final allProducts = await ApiService.fetchProducts();
-      final imageBaseUrl = "http://192.168.100.16:8000"; // apna IP confirm karo
-
+      final imageBaseUrl = dotenv.env['MEDIA_BASE_URL'] ?? '';
       setState(() {
         _ladiesProducts = allProducts
             .where((p) => p['category'] == 'Ladies')

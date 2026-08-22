@@ -2,16 +2,6 @@ import 'dart:async';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
-/// ============================================================
-/// MonarqLoader — the core branded loading animation.
-///
-/// Usage (always visible, e.g. inside a screen's body while data loads):
-///
-///   MonarqLoader(message: "Fetching your orders...")
-///
-/// For real screens, prefer wrapping content with [MonarqLoadingSwitcher]
-/// below so the loader only appears when there's an actual delay.
-/// ============================================================
 class MonarqLoader extends StatefulWidget {
   final String message;
 
@@ -283,21 +273,6 @@ class _EmblemPainter extends CustomPainter {
   }
 }
 
-/// ============================================================
-/// MonarqLoadingSwitcher — smart wrapper for real screens.
-///
-/// Only shows the MonarqLoader if [isLoading] stays true for longer
-/// than [showDelay] (default 250ms), preventing loader flicker on
-/// near-instant loads. Cross-fades between loader and content.
-///
-/// Usage:
-///
-///   MonarqLoadingSwitcher(
-///     isLoading: _isFetchingOrders,
-///     message: "Fetching your orders...",
-///     child: OrdersListView(orders: _orders),
-///   )
-/// ============================================================
 class MonarqLoadingSwitcher extends StatefulWidget {
   final bool isLoading;
   final Widget child;
