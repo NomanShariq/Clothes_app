@@ -5,32 +5,38 @@
 </p>
 
 <p align="center">
-  A modern Flutter e-commerce application focused on premium fashion, clean UI, and a smooth shopping experience.
+  A modern Flutter e-commerce application focused on premium fashion, clean UI, and a smooth shopping experience — now backed by a real Django REST API.
 </p>
 
 ## 📱 About
 
 MONARQ is a modern mobile e-commerce application designed for a premium fashion brand.
 
-The app uses a dark luxury aesthetic with a deep navy/black interface, refined typography, subtle gold accents, and a clean product-focused shopping experience.
+The app uses a dark luxury aesthetic with a deep navy/black interface, refined typography, subtle gold accents, and a clean product-focused shopping experience — with a fully theme-driven design system that adapts consistently between light and dark modes.
 
-The current version is primarily a frontend/static implementation, with the UI and navigation structured so that real backend services can be integrated later.
+The project has evolved from a static frontend prototype into a full-stack application, with a Django REST Framework backend serving real product data, and Flutter consuming it over HTTP with persistent user authentication.
 
 ## ✨ Features
 
 - 🏠 Modern fashion-focused home screen
-- 🛍️ Product browsing and catalog
+- 🛍️ Product browsing and catalog, powered by a live Django backend
 - 🔎 Product search experience
 - ❤️ Wishlist
-- 🛒 Shopping cart
+- 🛒 Shopping cart with quantity management
 - 🎟️ Promo code support
 - 💳 Checkout flow
-- 📦 Order placement flow
+- 📦 Order placement flow with an animated, branded order-confirmation experience
 - 👤 Profile / account
 - 📋 My Orders
 - 🚚 Order status categories
 - 💰 Currency formatting
-- 🌙 Consistent dark luxury theme
+- 🌙 Fully theme-driven light/dark design system (MONARQ gold accent in dark mode)
+- 🔐 User authentication (Sign Up / Login) via Django REST API
+- 💾 Persistent login — session survives app restarts and hot reloads
+- 🎬 Custom branded loading animation (MONARQ emblem draw-in + shimmer)
+- ⚠️ Animated "Invalid Credentials" error dialog for failed logins
+- 🖼️ Smart image loading (local assets + network images from the backend)
+- 🎨 Custom app icon and native splash screen
 - 📱 Responsive mobile UI
 - 🎨 Reusable themed UI components
 
@@ -57,11 +63,25 @@ Checkout
   ↓
 Place Order
   ↓
-Order Confirmation
+Animated Order Confirmation
   ↓
 My Orders
   ↓
 Order Details
+```
+
+**Auth flow:**
+
+```
+App Launch
+  ↓
+Splash Screen (native, branded)
+  ↓
+Auth Gate — checks saved session
+  ├── Session found  → Home
+  └── No session      → Login
+                          ├── Sign In  → (invalid → animated error dialog)
+                          └── Sign Up  → Home
 ```
 
 **Profile navigation:**
@@ -80,15 +100,66 @@ Profile
 
 MONARQ follows a minimal luxury fashion design language:
 
-- **Background:** Deep black / navy
-- **Primary text:** White
+- **Background:** Deep navy / near-black (`#021032` family)
+- **Primary text:** White (dark mode) / Black (light mode)
 - **Secondary text:** Muted gray
-- **Accent:** Premium gold
+- **Accent:** Premium gold (`colorScheme.secondary`)
 - **Components:** Rounded cards and buttons
 - **Typography:** Clean and sophisticated
 - **UI approach:** Minimal, spacious, product-focused
 
-The design system is theme-driven to keep colors and components consistent throughout the application.
+All colors are pulled from `Theme.of(context)` rather than hardcoded — every screen automatically adapts between the light and dark MONARQ palettes, including the sale filters, cart, checkout, product details, and profile screens.
+
+## 🎬 Branded Motion
+
+Two custom animated components give the app a distinct, recognizable identity:
+
+- **MonarqLoader** — a reusable global loading animation. The MONARQ emblem (clock ring + hanger hook + hands) draws itself stroke-by-stroke, a gold shimmer passes across it, and it settles into a soft breathing fade — looping seamlessly. Wrapped by `MonarqLoadingSwitcher`, which only shows the loader after a short delay, avoiding flicker on fast loads.
+- **Order Confirmation Sheet** — a 4-phase animated bottom sheet shown after placing an order: *Order Confirmed → Packed With Care → On The Way → Order Placed*, complete with a moving delivery truck illustration and order details.
+- **Invalid Credentials Dialog** — a short, polished authentication-error animation (drawn circle, shake, subtle particles) replacing the old plain error SnackBar.
+
+## 🛠️ Tech Stack
+
+**Frontend**
+- Flutter / Dart
+- Provider for state management
+- `http` for REST API communication
+- `shared_preferences` for persistent login sessions
+- `flutter_dotenv` for environment-based API configuration
+- Material UI / custom `CustomPainter` animations
+- `flutter_launcher_icons` & `flutter_native_splash` for branded app icon/splash
+
+**Backend**
+- Python / Django
+- Django REST Framework
+- SQLite (development database)
+- Django Admin for product/catalog management
+
+## 🧩 Project Structure
+
+```
+lib/
+├── models/          # Cart, Wishlist, UserSession, data models
+├── pages/            # Screens (Home, Product Detail, Checkout, Profile, Auth Gate, etc.)
+├── screens/          # Cart & related full screens
+├── services/          # API service layer (Django REST integration)
+├── widgets/           # Reusable themed UI components & animations
+├── theme/             # AppColors, AppTextStyles, AppTheme (light/dark)
+└── main.dart
+```
+
+The project uses reusable widgets and theme-based styling to keep the UI consistent and maintainable, with a clean separation between UI, state, and the API layer.
+
+## 🔐 Environment Configuration
+
+API endpoints are configured via a local `.env` file (not committed to version control):
+
+```
+API_BASE_URL=http://YOUR_LOCAL_IP:8000/api
+MEDIA_BASE_URL=http://YOUR_LOCAL_IP:8000
+```
+
+Copy `.env.example` to `.env` and set your own backend IP before running the app.
 
 ## 📸 Screenshots
 
@@ -124,29 +195,6 @@ The design system is theme-driven to keep colors and components consistent throu
   <img src="https://github.com/user-attachments/assets/5f3b7332-0614-4532-af27-6dd41323f017" width="250" />
 </p>
 
-## 🛠️ Tech Stack
-
-- Flutter
-- Dart
-- Provider for state management
-- Material UI / Flutter Widgets
-- Local/static product data
-- Git & GitHub
-
-## 🧩 Project Structure
-
-```
-lib/
-├── models/
-├── screens/
-├── widgets/
-├── utils/
-├── providers/
-└── main.dart
-```
-
-The project uses reusable widgets and theme-based styling to keep the UI consistent and maintainable.
-
 ## 🚧 Current Status
 
 MONARQ is currently under active development.
@@ -154,31 +202,36 @@ MONARQ is currently under active development.
 **Implemented**
 
 - Core mobile UI
-- Product browsing
+- Product browsing backed by a live Django REST API
 - Product details navigation
 - Wishlist
-- Cart
+- Cart with quantity sync
 - Promo code UI
 - Checkout UI
+- User registration & login (Django backend)
+- Persistent login sessions (`shared_preferences`)
+- Animated invalid-credentials error dialog
+- Animated order-confirmation flow
+- Custom global loading animation
 - Profile
 - My Orders structure
-- Theme integration
+- Full light/dark theme integration
 - Reusable UI components
 - Currency formatting
+- Custom app icon & branded native splash screen
+- Environment-based API configuration (`.env`)
 
 **Planned**
 
-- Backend integration
-- User authentication
-- Real product database
-- Dynamic search
-- Wishlist persistence
-- Address management
+- Full order processing (placing real orders against the backend)
+- Wishlist & cart persistence per user account
+- Address management (CRUD against backend)
 - Payment gateway integration
-- Real order processing
-- Order tracking
+- Order tracking with live status updates
 - Push notifications
-- Final UI/UX polish and animations
+- Forgot-password flow
+- Final UI/UX polish and micro-animations
+- Production deployment (backend hosting + release builds)
 
 ## 🎯 Future Goal
 
@@ -188,7 +241,7 @@ The goal is to turn MONARQ into a complete production-ready fashion e-commerce p
 
 **Noman Shariq**
 
-Built as a Flutter-based e-commerce project with a focus on modern mobile UI/UX, reusable components, and scalable application structure.
+Built as a full-stack Flutter + Django e-commerce project with a focus on modern mobile UI/UX, branded motion design, reusable components, and scalable application architecture.
 
 ## 📄 License
 
