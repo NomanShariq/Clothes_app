@@ -1,3 +1,4 @@
+import 'package:clothing_app/models/user_session.dart';
 import 'package:clothing_app/pages/coming_soon_page.dart';
 import 'package:clothing_app/pages/wishlist_page.dart';
 import 'package:flutter/material.dart';
@@ -147,10 +148,12 @@ class ProfileScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
+                    await UserSession.clear();
+                    if (!context.mounted) return;
                     Navigator.pushNamedAndRemoveUntil(
                       context,
-                      "/",
+                      "/login",
                       (route) => false,
                     );
                   },

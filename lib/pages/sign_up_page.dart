@@ -1,5 +1,7 @@
+import 'package:clothing_app/models/user_session.dart';
 import 'package:clothing_app/pages/home_page.dart';
 import 'package:clothing_app/pages/login_page.dart';
+import 'package:clothing_app/services/api_services.dart';
 import 'package:clothing_app/widgets/app_logo_header.dart';
 import 'package:clothing_app/widgets/auth_switch_text.dart';
 import 'package:clothing_app/widgets/custom_text_field.dart';
@@ -17,19 +19,41 @@ class SignUpPage extends StatefulWidget {
 class _State extends State<SignUpPage> {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
   final TextEditingController passwordController = TextEditingController();
-
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   @override
   void dispose() {
     passwordController.dispose();
+    nameController.dispose();
+    emailController.dispose();
     super.dispose();
   }
 
-  void validate() {
+  void validate() async {
     if (formkey.currentState!.validate()) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const Homepage()),
-      );
+      final name = nameController.text.trim();
+      final email = emailController.text.trim();
+      final password = passwordController.text;
+      print("NAME: $name");
+      print("EMAIL: $email");
+      final success =
+          await ApiService.register(email, email, password, name: name);
+      if (success) {
+        final token = await ApiService.login(email, password);
+        UserSession.email = email;
+        UserSession.username = email;
+        UserSession.token = token;
+        await UserSession.saveToPrefs();
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const Homepage()),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+              content: Text("Registration failed. Email may already exist.")),
+        );
+      }
     }
   }
 
@@ -51,17 +75,19 @@ class _State extends State<SignUpPage> {
                   subtitle: "Sign up to start shopping",
                 ),
                 const SizedBox(height: 40),
-                const CustomTextField(
+                CustomTextField(
                   label: "Full Name",
                   hint: "John Doe",
                   icon: Icons.person_outline,
+                  controller: nameController,
                 ),
                 const SizedBox(height: 22),
-                const CustomTextField(
+                CustomTextField(
                   label: "Email",
                   hint: "you@example.com",
                   icon: Icons.mail_outline,
                   keyboardType: TextInputType.emailAddress,
+                  controller: emailController,
                 ),
                 const SizedBox(height: 22),
                 PasswordField(controller: passwordController),

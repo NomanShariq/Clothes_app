@@ -1,3 +1,4 @@
+import 'package:clothing_app/widgets/smart_image.dart';
 import 'package:flutter/material.dart';
 
 class ProductCardData {
@@ -6,6 +7,7 @@ class ProductCardData {
   final double rating;
   final double price;
   final double? originalPrice;
+  final String description;
 
   const ProductCardData({
     required this.image,
@@ -13,9 +15,27 @@ class ProductCardData {
     required this.rating,
     required this.price,
     this.originalPrice,
+    this.description = "",
   });
 
   bool get isOnSale => originalPrice != null && originalPrice! > price;
+
+  factory ProductCardData.fromJson(Map<String, dynamic> json, String baseUrl) {
+    String imageUrl = json['image'] ?? '';
+    if (!imageUrl.startsWith('http')) {
+      imageUrl = "$baseUrl$imageUrl";
+    }
+    return ProductCardData(
+      image: imageUrl,
+      title: json['name'],
+      rating: double.tryParse(json['rating'].toString()) ?? 4.5,
+      price: (json['price'] as num).toDouble(),
+      originalPrice: json['original_price'] != null
+          ? (json['original_price'] as num).toDouble()
+          : null,
+      description: json['description'] ?? "",
+    );
+  }
 }
 
 class ProductCard extends StatelessWidget {
@@ -38,7 +58,7 @@ class ProductCard extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(14),
-                  child: Image.asset(product.image, fit: BoxFit.cover),
+                  child: SmartImage(path: product.image, fit: BoxFit.cover),
                 ),
                 if (product.isOnSale)
                   Positioned(

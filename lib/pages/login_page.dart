@@ -1,10 +1,12 @@
 import 'package:clothing_app/models/user_session.dart';
 import 'package:clothing_app/pages/home_page.dart';
 import 'package:clothing_app/pages/sign_up_page.dart';
+import 'package:clothing_app/services/api_services.dart';
 import 'package:clothing_app/widgets/app_logo_header.dart';
 import 'package:clothing_app/widgets/auth_switch_text.dart';
 import 'package:clothing_app/widgets/custom_text_field.dart'
     show CustomTextField, PasswordField;
+import 'package:clothing_app/widgets/invalid_credentials_dialog.dart';
 import 'package:clothing_app/widgets/or_divider.dart';
 import 'package:clothing_app/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
@@ -28,13 +30,26 @@ class _State extends State<LoginPage> {
     super.dispose();
   }
 
-  void validate() {
+  void validate() async {
     if (formkey.currentState!.validate()) {
-      UserSession.email = emailController.text.trim();
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const Homepage()),
-      );
+      final email = emailController.text.trim();
+      final password = passwordController.text;
+
+      final token = await ApiService.login(email, password);
+
+      if (token != null) {
+        UserSession.email = email;
+        UserSession.username = email;
+        UserSession.token = token;
+        await UserSession.saveToPrefs();
+
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const Homepage()),
+        );
+      } else {
+        showInvalidCredentialsDialog(context);
+      }
     }
   }
 

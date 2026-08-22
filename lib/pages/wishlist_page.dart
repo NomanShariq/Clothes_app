@@ -2,6 +2,7 @@ import 'package:clothing_app/models/cart.dart';
 import 'package:clothing_app/models/wishlist.dart';
 import 'package:clothing_app/pages/product_detail.dart';
 import 'package:clothing_app/widgets/home/product_card.dart';
+import 'package:clothing_app/widgets/smart_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -149,7 +150,7 @@ class _WishlistCard extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(14),
-                  child: Image.asset(product.image, fit: BoxFit.cover),
+                  child: SmartImage(path: product.image, fit: BoxFit.cover),
                 ),
                 if (product.isOnSale)
                   Positioned(

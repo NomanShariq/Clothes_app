@@ -1,6 +1,7 @@
 import 'package:clothing_app/models/cart.dart';
 import 'package:clothing_app/utils/currency.dart';
 import 'package:clothing_app/widgets/order_confirmation_sheet.dart';
+import 'package:clothing_app/widgets/smart_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -378,8 +379,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
-            child: Image.asset(item.image,
-                width: 50, height: 56, fit: BoxFit.cover),
+            child: SmartImage(
+                path: item.image, fit: BoxFit.cover, width: 50, height: 56),
           ),
           const SizedBox(width: 12),
           Expanded(

@@ -1,3 +1,4 @@
+import 'package:clothing_app/widgets/smart_image.dart';
 import 'package:flutter/material.dart';
 
 class CategoryItem {
@@ -34,10 +35,8 @@ class CategoryIconsRow extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16),
                       child: AspectRatio(
                         aspectRatio: 1.0,
-                        child: Image.asset(
-                          category.imagePath,
-                          fit: BoxFit.cover,
-                        ),
+                        child: SmartImage(
+                            path: category.imagePath, fit: BoxFit.cover),
                       ),
                     ),
                     const SizedBox(height: 10),

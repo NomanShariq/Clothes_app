@@ -1,3 +1,4 @@
+import 'package:clothing_app/widgets/smart_image.dart';
 import 'package:flutter/material.dart';
 
 class ProductItemData {
@@ -32,11 +33,11 @@ class ProductListSection extends StatelessWidget {
                   color: Colors.deepOrangeAccent,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Image.asset(
-                  product.image,
-                  height: 100,
-                  width: 100,
-                ),
+                child: SmartImage(
+                    path: product.image,
+                    fit: BoxFit.cover,
+                    width: 100,
+                    height: 100),
               ),
               const SizedBox(height: 10),
               Text(

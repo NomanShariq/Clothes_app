@@ -1,6 +1,7 @@
 import 'package:clothing_app/models/wishlist.dart';
 import 'package:clothing_app/screens/cart_screen.dart';
 import 'package:clothing_app/widgets/home/product_card.dart';
+import 'package:clothing_app/widgets/smart_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/cart.dart';
@@ -78,8 +79,8 @@ class _ProductDetailState extends State<ProductDetail> {
                             borderRadius: BorderRadius.circular(20),
                             child: AspectRatio(
                               aspectRatio: 0.85,
-                              child:
-                                  Image.asset(product.image, fit: BoxFit.cover),
+                              child: SmartImage(
+                                  path: product.image, fit: BoxFit.cover),
                             ),
                           ),
                         ),
@@ -298,7 +299,9 @@ class _ProductDetailState extends State<ProductDetail> {
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            "Premium quality fabric with elegant design, perfect for everyday wear.",
+                            product.description.isNotEmpty
+                                ? product.description
+                                : "No description available.",
                             style: TextStyle(
                               fontSize: 13,
                               color: primaryColor,

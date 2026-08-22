@@ -20,6 +20,9 @@ dependencies:
   provider: ^6.0.3
   video_player: ^2.9.2
   image_picker: ^1.1.2
+  http: ^1.2.2
+  shared_preferences: ^2.2.2
+  flutter_dotenv: ^5.1.0
 
 dev_dependencies:
   flutter_test:
@@ -35,6 +38,7 @@ flutter:
     - images/
     - videos/
     - assets/icon/
+    - .env
 
 flutter_launcher_icons:
   android: true

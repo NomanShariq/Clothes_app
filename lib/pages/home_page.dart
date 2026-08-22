@@ -6,6 +6,7 @@ import 'package:clothing_app/pages/profile_screen.dart';
 import 'package:clothing_app/pages/sale_page.dart';
 import 'package:clothing_app/pages/search_page.dart';
 import 'package:clothing_app/pages/wishlist_page.dart';
+import 'package:clothing_app/services/api_services.dart';
 import 'package:clothing_app/widgets/home/app_bottom_nav.dart';
 import 'package:clothing_app/widgets/home/category_icons_row.dart';
 import 'package:clothing_app/widgets/home/hero_banner.dart';
@@ -28,14 +29,46 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   int _navIndex = 0;
-  bool _isLoading = true;
+  bool _isSplashLoading = true;
+  bool _isProductsLoading = true;
+
+  List<ProductCardData> _ladiesProducts = [];
+  List<ProductCardData> _gentsProducts = [];
+  List<ProductCardData> _kidsProducts = [];
 
   @override
   void initState() {
     super.initState();
     Future.delayed(const Duration(milliseconds: 1200), () {
-      if (mounted) setState(() => _isLoading = false);
+      if (mounted) setState(() => _isSplashLoading = false);
     });
+    _loadProducts();
+  }
+
+  Future<void> _loadProducts() async {
+    try {
+      final allProducts = await ApiService.fetchProducts();
+      final imageBaseUrl = "http://192.168.100.16:8000"; // apna IP confirm karo
+
+      setState(() {
+        _ladiesProducts = allProducts
+            .where((p) => p['category'] == 'Ladies')
+            .map((p) => ProductCardData.fromJson(p, imageBaseUrl))
+            .toList();
+        _gentsProducts = allProducts
+            .where((p) => p['category'] == 'Gents')
+            .map((p) => ProductCardData.fromJson(p, imageBaseUrl))
+            .toList();
+        _kidsProducts = allProducts
+            .where((p) => p['category'] == 'Kids')
+            .map((p) => ProductCardData.fromJson(p, imageBaseUrl))
+            .toList();
+        _isProductsLoading = false;
+      });
+    } catch (e) {
+      setState(() => _isProductsLoading = false);
+      debugPrint("Error loading products: $e");
+    }
   }
 
   static const List<CategoryItem> _categories = [
@@ -44,67 +77,16 @@ class _HomepageState extends State<Homepage> {
     CategoryItem(label: "Kids", imagePath: _kidsImage),
   ];
 
-  static const List<ProductCardData> _ladiesProducts = [
-    ProductCardData(
-        image: _ladiesImage, title: "Ladies Kurti", rating: 4.5, price: 4500),
-    ProductCardData(
-        image: _ladiesImage,
-        title: "Embroidered Suit",
-        rating: 4.7,
-        price: 4900,
-        originalPrice: 6900),
-    ProductCardData(
-        image: _ladiesImage, title: "Lawn 3-Piece", rating: 4.3, price: 5200),
-    ProductCardData(
-        image: _ladiesImage,
-        title: "Party Wear",
-        rating: 4.8,
-        price: 6900,
-        originalPrice: 8900),
-  ];
-
-  static const List<ProductCardData> _gentsProducts = [
-    ProductCardData(
-        image: _gentsImage,
-        title: "Men Denim Shirt",
-        rating: 4.5,
-        price: 7500,
-        originalPrice: 9500),
-    ProductCardData(
-        image: _gentsImage, title: "Denim Jeans", rating: 4.6, price: 19500),
-    ProductCardData(
-        image: _gentsImage,
-        title: "Black Shalwar Suit",
-        rating: 4.4,
-        price: 29900,
-        originalPrice: 38900),
-    ProductCardData(
-        image: _gentsImage, title: "Formal Shirt", rating: 4.2, price: 5900),
-  ];
-
-  static const List<ProductCardData> _kidsProducts = [
-    ProductCardData(
-        image: _kidsImage,
-        title: "Kids Festive Frock",
-        rating: 4.9,
-        price: 2500,
-        originalPrice: 3500),
-    ProductCardData(
-        image: _kidsImage, title: "Kids Casual Wear", rating: 4.5, price: 2900),
-    ProductCardData(
-        image: _kidsImage,
-        title: "Kids Party Dress",
-        rating: 4.7,
-        price: 2900,
-        originalPrice: 4200),
-    ProductCardData(
-        image: _kidsImage, title: "Kids T-Shirt", rating: 4.3, price: 1800),
-  ];
-
   List<ProductCardData> get _saleProducts => [
         ..._ladiesProducts.where((p) => p.isOnSale),
         ..._gentsProducts.where((p) => p.isOnSale),
         ..._kidsProducts.where((p) => p.isOnSale),
+      ];
+
+  List<ProductCardData> get _allProducts => [
+        ..._ladiesProducts,
+        ..._gentsProducts,
+        ..._kidsProducts,
       ];
 
   List<ProductCardData> _productsForLabel(String label) {
@@ -178,19 +160,16 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      appBar: HomeAppBar(onSearchTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => const SearchPage(
-                    allProducts: [
-                      ..._ladiesProducts,
-                      ..._gentsProducts,
-                      ..._kidsProducts,
-                    ],
-                  )),
-        );
-      }),
+      appBar: HomeAppBar(
+        onSearchTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => SearchPage(allProducts: _allProducts),
+            ),
+          );
+        },
+      ),
       bottomNavigationBar: AppBottomNav(
         currentIndex: _navIndex,
         onTap: (index) {
@@ -214,7 +193,7 @@ class _HomepageState extends State<Homepage> {
         },
       ),
       body: MonarqLoadingSwitcher(
-        isLoading: _isLoading,
+        isLoading: _isSplashLoading || _isProductsLoading,
         message: "Curating your style...",
         child: ListView(
           children: [
@@ -240,13 +219,8 @@ class _HomepageState extends State<Homepage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const NewCollectionPage(
-                      allProducts: [
-                        ..._ladiesProducts,
-                        ..._gentsProducts,
-                        ..._kidsProducts,
-                      ],
-                    ),
+                    builder: (context) =>
+                        NewCollectionPage(allProducts: _allProducts),
                   ),
                 );
               },

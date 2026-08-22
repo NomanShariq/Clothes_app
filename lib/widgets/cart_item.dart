@@ -1,5 +1,6 @@
 import 'package:clothing_app/models/cart.dart';
 import 'package:clothing_app/utils/currency.dart';
+import 'package:clothing_app/widgets/smart_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -41,12 +42,8 @@ class CartPdt extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
-                item.image,
-                width: 80,
-                height: 90,
-                fit: BoxFit.cover,
-              ),
+              child: SmartImage(
+                  path: item.image, fit: BoxFit.cover, width: 80, height: 90),
             ),
             const SizedBox(width: 12),
             Expanded(
